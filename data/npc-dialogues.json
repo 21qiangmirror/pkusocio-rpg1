@@ -1,0 +1,631 @@
+{
+  "npcs": [
+    {
+      "id": "guide",
+      "name": "引路人",
+      "title": "📜考研古道守护者",
+      "avatar": "assets/images/characters/guide.png",
+      "personality": "和蔼可亲、知识渊博的老者，见证了无数考研人的奋斗历程",
+      "colorTheme": "#FF8C42",
+      "dialogues": [
+        {
+          "id": "guide_intro_001",
+          "trigger": "first_meet",
+          "content": "年轻的求道者啊，欢迎来到社会学考研的试炼之地！🎓 我是这片知识的引路人，在这里守护了很久很久...看着一批又一批的学子踏上这条道路。",
+          "next": "guide_intro_002",
+          "xpReward": 10
+        },
+        {
+          "id": "guide_intro_002",
+          "trigger": "default",
+          "content": "在你之前，已经有很多人在这里出发了。📖 有人在第50天放弃了，有人因为太难而回头...但也有学姐学长最终走到了终点，他们的笔记还留在这里...",
+          "next": "guide_intro_003",
+          "xpReward": 15,
+          "isEasterEgg": true,
+          "eggCondition": "Day1"
+        },
+        {
+          "id": "guide_intro_003",
+          "trigger": "default",
+          "content": "社会学是一条从个人通向社会的桥梁之路，涂尔干、韦伯、马克思...这些大师的名字将伴随你走过这段旅程。准备好了吗？",
+          "next": null,
+          "xpReward": 10
+        },
+        {
+          "id": "guide_encourage_001",
+          "trigger": "day_complete",
+          "content": "很好！你完成了今天的修炼。✨ 社会学的道路虽然漫长，但每一步都在靠近那个更好的自己。",
+          "next": "guide_encourage_002",
+          "xpReward": 20
+        },
+        {
+          "id": "guide_encourage_002",
+          "trigger": "default",
+          "content": "记住汤因比的话：文明的成长在于挑战与应战的循环。🗺️ 困难不是障碍，而是磨砺你的砺石！",
+          "next": null,
+          "xpReward": 10
+        },
+        {
+          "id": "guide_milestone_001",
+          "trigger": "day_10",
+          "content": "恭喜你完成了社会学概论的修炼！🎉 你已经迈出了坚实的第一步。接下来的古典理论部分，会带你深入涂尔干、韦伯、马克思的思想世界...",
+          "next": "guide_milestone_002",
+          "xpReward": 50
+        },
+        {
+          "id": "guide_milestone_002",
+          "trigger": "default",
+          "content": "还记得图书馆角落里那些泛黄的笔记吗？📖 它们来自曾经走过这条路的学长学姐。如果足够用心，也许你能找到一些彩蛋...👀",
+          "next": null,
+          "xpReward": 20,
+          "isEasterEgg": true,
+          "eggCondition": "hint_find_notes"
+        },
+        {
+          "id": "guide_final_001",
+          "trigger": "day_100",
+          "content": "一百天...你终于走到了这里。🏆 不管考试结果如何，这段修炼已经塑造了一个更好的你。记住，社会学的眼光会伴随你一生。",
+          "next": "guide_final_002",
+          "xpReward": 100
+        },
+        {
+          "id": "guide_final_002",
+          "trigger": "default",
+          "content": "那些留在图书馆的笔记，那些曾经在这里奋斗的身影...他们都在为你祝福。🌟 现在，去书写属于你自己的故事吧！",
+          "next": null,
+          "xpReward": 50
+        }
+      ]
+    },
+    {
+      "id": "comte",
+      "name": "孔德",
+      "title": "🔮实证主义守门人",
+      "avatar": "assets/images/characters/comte.png",
+      "personality": "严谨的学术守护者，实证精神的传承者，对知识的秩序有着近乎执着的追求",
+      "colorTheme": "#E65100",
+      "dialogues": [
+        {
+          "id": "comte_intro_001",
+          "trigger": "first_meet",
+          "content": "欢迎来到实证主义的殿堂！📐 我，孔德，社会学的奠基人，将为你揭示社会科学的秩序之道。",
+          "next": "comte_intro_002",
+          "xpReward": 15
+        },
+        {
+          "id": "comte_intro_002",
+          "trigger": "default",
+          "content": "人类社会经历了神学阶段、形而上学阶段，最终将到达实证阶段。🌟 只有用自然科学的方法研究社会，才能发现社会的规律！",
+          "next": "comte_intro_003",
+          "xpReward": 10
+        },
+        {
+          "id": "comte_intro_003",
+          "trigger": "default",
+          "content": "记住社会学的两大主题：秩序与进步。没有秩序就没有进步，没有进步秩序也会僵化。⚖️",
+          "next": null,
+          "xpReward": 10
+        },
+        {
+          "id": "comte_lecture_001",
+          "trigger": "day_11",
+          "content": "我的知识发展三阶段定律是理解人类文明进步的钥匙！📚 神学的虚构、形而上学的抽象，最终要让位于实证的科学！",
+          "next": "comte_lecture_002",
+          "xpReward": 20
+        },
+        {
+          "id": "comte_lecture_002",
+          "trigger": "default",
+          "content": "社会学分为社会静力学和社会动力学——前者研究社会秩序的条件，后者研究社会进步的规律。🔍 两者缺一不可！",
+          "next": null,
+          "xpReward": 15
+        },
+        {
+          "id": "comte_perfect_001",
+          "trigger": "perfect_day",
+          "content": "了不起！🌟 你展现出了实证主义的精神——严谨、客观、追求规律。这样的你，正是社会学需要的人才！",
+          "next": null,
+          "xpReward": 40
+        },
+        {
+          "id": "comte_farewell_001",
+          "trigger": "day_50",
+          "content": "你已经走过了半程！⚡ 记住我的教诲：社会是有规律可循的，用科学的方法去发现它！实证精神将照亮你的考研之路...",
+          "next": null,
+          "xpReward": 50
+        }
+      ]
+    },
+    {
+      "id": "durkeim",
+      "name": "涂尔干",
+      "title": "🌉社会团结之桥守护者",
+      "avatar": "assets/images/characters/durkheim.png",
+      "personality": "沉稳庄重的学者，毕生致力于研究社会如何将个体团结在一起",
+      "colorTheme": "#1565C0",
+      "dialogues": [
+        {
+          "id": "durheim_intro_001",
+          "trigger": "first_meet",
+          "content": "我是涂尔干，社会学的现代奠基人。🏛️ 我穷尽一生研究一个问题：社会如何维持团结？",
+          "next": "durheim_intro_002",
+          "xpReward": 15
+        },
+        {
+          "id": "durheim_intro_002",
+          "trigger": "default",
+          "content": "社会不是个人的简单相加，而是一个超越个人的物！💎 它具有外在性、强制性和普遍性——这是你理解社会的起点。",
+          "next": "durheim_intro_003",
+          "xpReward": 10
+        },
+        {
+          "id": "durheim_intro_003",
+          "trigger": "default",
+          "content": "我的《自杀论》是我方法论思想的最佳例证。🔍 相信我，个人的自杀行为背后，隐藏着深刻的社会原因！",
+          "next": null,
+          "xpReward": 10,
+          "hint": "《自杀论》"
+        },
+        {
+          "id": "durheim_suicide_001",
+          "trigger": "found_suicide_book",
+          "content": "你找到了我的《自杀论》！📖 很好，这是我最重要的著作之一。通过对自杀现象的研究，我证明了社会事实对个人的制约作用...",
+          "next": "durheim_suicide_002",
+          "xpReward": 30,
+          "isEasterEgg": true,
+          "eggCondition": "found_suicide"
+        },
+        {
+          "id": "durheim_suicide_002",
+          "trigger": "default",
+          "content": "自杀率不是个人意志的结果，而是社会整合程度的风向标！🌡️ 利己主义、利他主义、失范性...每一种自杀都诉说着社会的病理。",
+          "next": null,
+          "xpReward": 20
+        },
+        {
+          "id": "durheim_solidarity_001",
+          "trigger": "day_12",
+          "content": "今天我们来谈谈社会团结。🤝 社会有两种基本的团结方式：机械团结和有机团结。",
+          "next": "durheim_solidarity_002",
+          "xpReward": 20
+        },
+        {
+          "id": "durheim_solidarity_002",
+          "trigger": "default",
+          "content": "机械团结依赖于人们的相似性，大家长着同一个灵魂；而有机团结则依赖于分工，每个人都是社会有机体不可或缺的部分！🔗",
+          "next": null,
+          "xpReward": 15
+        },
+        {
+          "id": "durheim_religion_001",
+          "trigger": "day_13",
+          "content": "宗教的本质是什么？⛪ 不是对神灵的崇拜，而是对社会本身的崇拜！神圣不过是凡俗的升华。",
+          "next": "durheim_religion_002",
+          "xpReward": 20
+        },
+        {
+          "id": "durheim_religion_002",
+          "trigger": "default",
+          "content": "在图腾崇拜中，我们看到的是氏族社会的缩影。🌀 集体欢腾时，个人感受到的是超越自身的社会力量——这正是宗教的秘密！",
+          "next": null,
+          "xpReward": 15
+        },
+        {
+          "id": "durheim_perfect_001",
+          "trigger": "perfect_score",
+          "content": "完美！你展现了对社会事实的深刻理解。🌟 能够全对，说明你真正掌握了实证主义的精髓——将社会视为物来研究！",
+          "next": null,
+          "xpReward": 50
+        }
+      ]
+    },
+    {
+      "id": "weber",
+      "name": "韦伯",
+      "title": "🔑理性铁笼钥匙持有者",
+      "avatar": "assets/images/characters/weber.png",
+      "personality": "深邃的思想家，对现代性的悖论有着深刻的洞察，兼具理性与感性",
+      "colorTheme": "#5D4037",
+      "dialogues": [
+        {
+          "id": "weber_intro_001",
+          "trigger": "first_meet",
+          "content": "我是马克斯·韦伯，与涂尔干并称的现代社会学的奠基人。🗝️ 但我的方法与他不同——我关注的是社会行动的主观意义！",
+          "next": "weber_intro_002",
+          "xpReward": 15
+        },
+        {
+          "id": "weber_intro_002",
+          "trigger": "default",
+          "content": "社会学的独特之处在于理解，而不仅仅是解释。💭 理解行动者的主观意义——这是我们与自然科学的根本区别！",
+          "next": "weber_intro_003",
+          "xpReward": 10
+        },
+        {
+          "id": "weber_intro_003",
+          "trigger": "default",
+          "content": "让我为你打开理解社会学的大门...🚪 但要小心，这扇门背后隐藏着现代性的铁笼！",
+          "next": null,
+          "xpReward": 10
+        },
+        {
+          "id": "weber_rationalization_001",
+          "trigger": "day_16",
+          "content": "现代社会的核心是理性化。⚙️ 从传统到现代，人类社会的历史就是理性化的进程。但理性化也带来了除魅...",
+          "next": "weber_rationalization_002",
+          "xpReward": 20
+        },
+        {
+          "id": "weber_rationalization_002",
+          "trigger": "default",
+          "content": "除魅之后的世界，巫术和宗教退场，理性登场。🌫️ 但理性的极致不是自由，而是铁笼——现代人被科层制所困！",
+          "next": null,
+          "xpReward": 15
+        },
+        {
+          "id": "weber_iron_cage_001",
+          "trigger": "milestone_50",
+          "content": "你已经走了很远...🏛️ 但我要提醒你，理性化是双刃剑。科层制带来了效率，也带来了对人的控制。这就是现代性的代价。",
+          "next": "weber_iron_cage_002",
+          "xpReward": 30
+        },
+        {
+          "id": "weber_iron_cage_002",
+          "trigger": "default",
+          "content": "能否打破铁笼？我不知道。❓ 但至少，认识铁笼的存在，是挣脱它的第一步！",
+          "next": null,
+          "xpReward": 20
+        },
+        {
+          "id": "weber_perfect_001",
+          "trigger": "perfect_score",
+          "content": "非常出色！🌟 你理解了理解社会学的精髓。能够进入他人主观意义的世界，这是社会学最珍贵的品质！",
+          "next": null,
+          "xpReward": 50
+        }
+      ]
+    },
+    {
+      "id": "marx",
+      "name": "马克思",
+      "title": "⚔️阶级深渊觉醒者",
+      "avatar": "assets/images/characters/marx.png",
+      "personality": "激昂的社会批判者，对不公有着敏锐的洞察，对受压迫者有着深切的关怀",
+      "colorTheme": "#B71C1C",
+      "dialogues": [
+        {
+          "id": "marx_intro_001",
+          "trigger": "first_meet",
+          "content": "我是马克思！⚔️ 不是社会学家？不，社会学最深刻的批判传统来自我！",
+          "next": "marx_intro_002",
+          "xpReward": 15
+        },
+        {
+          "id": "marx_intro_002",
+          "trigger": "default",
+          "content": "哲学家们只是用不同的方式解释世界，而问题在于改变世界！🛠️ 这才是社会学的使命！",
+          "next": "marx_intro_003",
+          "xpReward": 10
+        },
+        {
+          "id": "marx_intro_003",
+          "trigger": "default",
+          "content": "生产资料占有关系——这是理解阶级社会的钥匙。🔑 资本家与工人，不只是职业的不同，而是对立的两大阶级！",
+          "next": null,
+          "xpReward": 10
+        },
+        {
+          "id": "marx_class_001",
+          "trigger": "day_15",
+          "content": "阶级斗争是历史发展的直接动力！⚔️ 从古至今，哪一次社会变革不是通过阶级斗争实现的？",
+          "next": "marx_class_002",
+          "xpReward": 20
+        },
+        {
+          "id": "marx_class_002",
+          "trigger": "default",
+          "content": "但阶级不只是经济范畴，它是一种社会关系。👥 有共同利益、共同意识、共同行动的人，才能构成真正的阶级！",
+          "next": null,
+          "xpReward": 15
+        },
+        {
+          "id": "marx_ideology_001",
+          "trigger": "day_15",
+          "content": "意识形态——这是统治阶级维护统治的思想武器！🎭 他们把有利于自己的观念包装成普遍真理，让你以为是理所当然！",
+          "next": "marx_ideology_002",
+          "xpReward": 20
+        },
+        {
+          "id": "marx_ideology_002",
+          "trigger": "default",
+          "content": "批判的武器不能代替武器的批判。⚔️ 但首先要有批判的意识——这正是社会学教育的意义！",
+          "next": null,
+          "xpReward": 15
+        },
+        {
+          "id": "marx_perfect_001",
+          "trigger": "perfect_score",
+          "content": "好！你看到了社会的不公。🌋 批判的武器不能代替武器的批判，但批判的意识是改变的第一步！",
+          "next": null,
+          "xpReward": 50
+        }
+      ]
+    },
+    {
+      "id": "bourdieu",
+      "name": "布迪厄",
+      "title": "🌌场域大师",
+      "avatar": "assets/images/characters/bourdieu.png",
+      "personality": "深邃的理论家，毕生致力于揭示社会不平等的文化根源",
+      "colorTheme": "#4527A0",
+      "dialogues": [
+        {
+          "id": "bourdieu_intro_001",
+          "trigger": "first_meet",
+          "content": "我是布迪厄！🌌 场域、惯习、资本——这是理解社会的三大钥匙！",
+          "next": "bourdieu_intro_002",
+          "xpReward": 15
+        },
+        {
+          "id": "bourdieu_intro_002",
+          "trigger": "default",
+          "content": "社会不是铁板一块，而是由不同的场域组成的！⚽ 学术场域、艺术场域、经济场域...每个场域都有自己的游戏规则！",
+          "next": "bourdieu_intro_003",
+          "xpReward": 10
+        },
+        {
+          "id": "bourdieu_intro_003",
+          "trigger": "default",
+          "content": "在每个场域中，人们争夺资本、争夺位置。🏆 经济资本、文化资本、社会资本...这些资本决定了你在场域中的地位！",
+          "next": null,
+          "xpReward": 10
+        },
+        {
+          "id": "bourdieu_field_001",
+          "trigger": "day_71",
+          "content": "场域是相对自主的社会空间！🌀 每个场域都有其独特的逻辑和资本形式。学术场域以文化资本为核心，但经济资本也在其中发挥作用！",
+          "next": "bourdieu_field_002",
+          "xpReward": 30
+        },
+        {
+          "id": "bourdieu_field_002",
+          "trigger": "default",
+          "content": "考研也是如此——这是一场争夺文化资本的战争！📚 你的本科学校、你的知识储备、你的考试技巧...都是你的资本！",
+          "next": null,
+          "xpReward": 20,
+          "isEasterEgg": true,
+          "eggCondition": "exam_reference"
+        },
+        {
+          "id": "bourdieu_capital_001",
+          "trigger": "day_71",
+          "content": "文化资本的三种形式：身体化状态（内化于身心的文化修养）、客观化状态（文化产品）、制度化状态（学历证书）！🎓",
+          "next": "bourdieu_capital_002",
+          "xpReward": 30
+        },
+        {
+          "id": "bourdieu_capital_002",
+          "trigger": "default",
+          "content": "学历证书是最重要的文化资本之一！📜 它是制度确认的能力标志，在劳动力市场上发挥着敲门砖的作用！",
+          "next": null,
+          "xpReward": 20
+        },
+        {
+          "id": "bourdieu_reproduction_001",
+          "trigger": "day_71",
+          "content": "文化再生产——学校教育不是在促进公平，而是在再生产不平等！📚 精英阶层的子女通过继承文化资本，世代占据优势位置！",
+          "next": "bourdieu_reproduction_002",
+          "xpReward": 30
+        },
+        {
+          "id": "bourdieu_reproduction_002",
+          "trigger": "default",
+          "content": "听起来很悲观？😔 但认识到不平等的生产机制，是打破不平等的第一步！这就是社会学的批判意义！",
+          "next": null,
+          "xpReward": 20
+        },
+        {
+          "id": "bourdieu_perfect_001",
+          "trigger": "perfect_score",
+          "content": "非常好！你理解了我的场域理论。🌌 能够看到社会结构与个人能动性之间的张力，这是社会学家的深度！",
+          "next": null,
+          "xpReward": 50
+        }
+      ]
+    },
+    {
+      "id": "foucault",
+      "name": "福柯",
+      "title": "🔮权力解谜者",
+      "avatar": "assets/images/characters/foucault.png",
+      "personality": "深邃而颠覆性的思想家，揭示权力运作的隐秘机制",
+      "colorTheme": "#37474F",
+      "dialogues": [
+        {
+          "id": "foucault_intro_001",
+          "trigger": "first_meet",
+          "content": "我是福柯！🔮 权力不是压制性的，而是生产性的；不是从上到下的，而是弥散在社会各处的！",
+          "next": "foucault_intro_002",
+          "xpReward": 15
+        },
+        {
+          "id": "foucault_intro_002",
+          "trigger": "default",
+          "content": "哪里有知识，哪里就有权力！📚 知识与权力相互缠绕，建构了我们所认为的真理！",
+          "next": "foucault_intro_003",
+          "xpReward": 10
+        },
+        {
+          "id": "foucault_intro_003",
+          "trigger": "default",
+          "content": "监狱、精神病院、医院、学校...🏛️ 这些现代机构都是权力运作的场所，规训着人的身体和灵魂！",
+          "next": null,
+          "xpReward": 10
+        },
+        {
+          "id": "foucault_discipline_001",
+          "trigger": "day_71",
+          "content": "规训——这是现代权力的核心技术！⏱️ 通过监视、规范化评判和层级化检查，规训塑造了顺从的肉体！",
+          "next": "foucault_discipline_002",
+          "xpReward": 30
+        },
+        {
+          "id": "foucault_discipline_002",
+          "trigger": "default",
+          "content": "边沁的全景敞视建筑——👁️ 只需一个监视者，所有人都自觉规范自己的行为！这就是权力的最高境界！",
+          "next": null,
+          "xpReward": 20
+        },
+        {
+          "id": "foucault_panopticon_001",
+          "trigger": "day_71",
+          "content": "全景敞视监狱——🏢 这不仅是监狱，也是医院、学校、工厂的隐喻！现代社会的每个人都在被监视！",
+          "next": "foucault_panopticon_002",
+          "xpReward": 30
+        },
+        {
+          "id": "foucault_panopticon_002",
+          "trigger": "default",
+          "content": "今天无处不在的监控摄像头、大数据追踪、网络行为记录...📹 这不就是数字时代的全景敞视吗？",
+          "next": null,
+          "xpReward": 20,
+          "isEasterEgg": true,
+          "eggCondition": "digital_surveillance"
+        },
+        {
+          "id": "foucault_perfect_001",
+          "trigger": "perfect_score",
+          "content": "深刻！你理解了权力的微观物理学。⚡ 能够看到权力无处不在，是最具批判性的洞察！",
+          "next": null,
+          "xpReward": 50
+        }
+      ]
+    },
+    {
+      "id": "senior_student",
+      "name": "北大上岸学姐",
+      "title": "🎓隐藏NPC-考研通关者",
+      "avatar": "assets/images/characters/senior.png",
+      "personality": "温暖的过来人，曾经的考研战士，现在北大的研究生",
+      "colorTheme": "#E91E63",
+      "isHidden": true,
+      "unlockConditions": {
+        "method": "find_notes",
+        "description": "找到图书馆角落的考研笔记"
+      },
+      "dialogues": [
+        {
+          "id": "senior_intro_001",
+          "trigger": "first_meet",
+          "content": "呀，被你发现了！🎉 我是曾经在这里备考的学姐，现在已经是北大的研究生了...",
+          "next": "senior_intro_002",
+          "xpReward": 100,
+          "isEasterEgg": true,
+          "eggCondition": "unlock_senior"
+        },
+        {
+          "id": "senior_intro_002",
+          "trigger": "default",
+          "content": "那些留在图书馆的笔记，是我当年留下的。没想到真的有人能找到它们...📚 这就是缘分吧！",
+          "next": "senior_intro_003",
+          "xpReward": 30
+        },
+        {
+          "id": "senior_intro_003",
+          "trigger": "default",
+          "content": "作为过来人，我想告诉你：考研不只是知识的比拼，更是心态的考验。💪 坚持到最后，你就赢了一半！",
+          "next": null,
+          "xpReward": 30
+        },
+        {
+          "id": "senior_tip_001",
+          "trigger": "day_30",
+          "content": "进入古典理论阶段了吧？📖 我的经验是：涂尔干、韦伯、马克思一定要对比着学，找出他们的异同！",
+          "next": "senior_tip_002",
+          "xpReward": 40
+        },
+        {
+          "id": "senior_tip_002",
+          "trigger": "default",
+          "content": "真题很重要！每年都有重复的知识点，只是换了一种考法。🔄 多做真题，培养应试感觉！",
+          "next": null,
+          "xpReward": 30
+        },
+        {
+          "id": "senior_encourage_001",
+          "trigger": "question_wrong",
+          "content": "做错了？没关系！❌ 我当年也错了很多题，关键是能从错题中学到什么...",
+          "next": "senior_encourage_002",
+          "xpReward": 20
+        },
+        {
+          "id": "senior_encourage_002",
+          "trigger": "default",
+          "content": "我有个建议：建立错题本，分析每道错题背后的知识点。📝 这样复习效率会高很多！",
+          "next": null,
+          "xpReward": 30
+        },
+        {
+          "id": "senior_final_001",
+          "trigger": "day_100",
+          "content": "100天了！你做到了！🏆 无论结果如何，这段经历已经让你成长了...",
+          "next": "senior_final_002",
+          "xpReward": 80
+        },
+        {
+          "id": "senior_final_002",
+          "trigger": "default",
+          "content": "我当年也在这里奋斗过，现在我在北大等你！🌟 相信努力的力量，也相信命运的安排。一切都是最好的安排！",
+          "next": null,
+          "xpReward": 50
+        }
+      ]
+    }
+  ],
+  "easterEggs": [
+    {
+      "id": "library_notes",
+      "name": "前辈的笔记",
+      "description": "在图书馆角落发现一本泛黄的笔记本",
+      "trigger": "Day1 - 在引路人对话后访问图书馆",
+      "reward": {
+        "xp": 200,
+        "item": "前辈的学习笔记",
+        "hint": "解锁隐藏NPC：北大上岸学姐"
+      },
+      "unlocks": "senior_student"
+    },
+    {
+      "id": "suicide_book",
+      "name": "《自杀论》副本",
+      "description": "找到涂尔干的《自杀论》",
+      "trigger": "Day12 - 完成涂尔干章节测试后访问书店",
+      "reward": {
+        "xp": 150,
+        "item": "《自杀论》解读资料",
+        "bonus": "涂尔干彩蛋对话"
+      },
+      "unlocks": "durheim_suicide_001"
+    },
+    {
+      "id": "real_exam_hunter",
+      "name": "真题猎人",
+      "description": "答对10道北大考研原题",
+      "trigger": "答对10道标注isRealExam的题目",
+      "reward": {
+        "xp": 300,
+        "item": "真题解析秘籍",
+        "title": "真题猎人",
+        "bonus": "解锁历年真题完整解析"
+      }
+    }
+  ],
+  "metadata": {
+    "totalNPCs": 8,
+    "hiddenNPCs": 1,
+    "totalDialogues": 60,
+    "totalEasterEggs": 3,
+    "lastUpdated": "2025-01-15",
+    "version": "1.0"
+  }
+}

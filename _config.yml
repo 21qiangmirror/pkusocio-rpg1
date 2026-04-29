@@ -1,0 +1,39 @@
+# GitHub Pages Configuration
+title: 无知之海 - 北大社会学考研RPG
+description: 游戏化学习北京大学社会学考研，100天闯关体系
+logo: /assets/images/logo.png
+theme: jekyll-theme-minimal
+
+# Build settings
+markdown: kramdown
+highlighter: none
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - webpack.config.js
+  - _config.yml.orig
+  - README.md
+  - docs/*.drawio
+  - "*.md"
+  
+# Include specific files
+include:
+  - assets/
+  - css/
+  - js/
+  - chapters/
+  - data/
+
+# Sass
+sass:
+  sass_dir: css
+  style: compressed
+
+# GitHub Pages
+future: true

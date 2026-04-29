@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 1 觉醒之夜 | 北大社会学考研RPG 🎮</title>
+  <style>
+    /* ============================================
+       暖色调 + 卡通游戏风格 CSS变量
+    ============================================ */
+    :root {
+      /* 暖色调主色系 */
+      --color-bg-primary: #FFF8F0;
+      --color-bg-secondary: #FFE8D6;
+      --color-bg-card: #FFFBF5;
+      --color-bg-warm: #FFDAB9;
+      
+      /* 强调色 */
+      --color-accent-orange: #FF9F43;
+      --color-accent-pink: #FF6B9D;
+      --color-accent-yellow: #FFD93D;
+      --color-success: #4CAF50;
+      --color-danger: #FF6B6B;
+      
+      /* 文字色 */
+      --color-text-primary: #5D4E37;
+      --color-text-secondary: #8B7355;
+      --color-text-muted: #A99B86;
+      
+      /* 边框和阴影 */
+      --color-border: #E8D5C4;
+      --shadow-soft: 0 4px 15px rgba(139, 115, 85, 0.15);
+      --shadow-glow: 0 0 25px rgba(255, 159, 67, 0.4);
+      --shadow-card: 0 8px 30px rgba(139, 115, 85, 0.2);
+      
+      /* 圆角 */
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      
+      /* 动画 */
+      --transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+      background: linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ============================================
+       游戏容器
+    ============================================ */
+    .game {
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ============================================
+       场景背景
+    ============================================ */
+    .scene {
+      width: 100%;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      transition: background 1s ease;
+    }
+
+    .scene--desk {
+      background: linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 50%, var(--color-bg-warm) 100%);
+    }
+
+    .scene--awakening {
+      background: linear-gradient(180deg, #FFE8D6 0%, #FFDAB3 30%, #FFCFA0 60%, #FFBE76 100%);
+    }
+
+    /* 漂浮的装饰元素 */
+    .floating-decor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .floating-item {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+    }
+
+    /* ============================================
+       头部导航 - 暖色风格
+    ============================================ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 248, 240, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 3px solid var(--color-accent-orange);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .header__logo {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--color-accent-orange);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition-default);
+    }
+
+    .header__logo:hover {
+      transform: scale(1.05);
+    }
+
+    .header__chapter {
+      background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-pink));
+      padding: 8px 16px;
+      border-radius: var(--radius-xl);
+      font-size: 0.9rem;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(255, 159, 67, 0.3);
+    }
+
+    .header__progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .progress-bar {
+      width: 100px;
+      height: 12px;
+      background: var(--color-bg-secondary);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--color-border);
+    }
+
+    .progress-bar__fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-accent-orange), var(--color-accent-pink));
+      border-radius: 10px;
+      transition: width 0.5s var(--bounce);
+      position: relative;
+    }
+
+    .progress-bar__fill::after {
+      content: '✨';
+      position: absolute;
+      right: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.8rem;
+    }
+
+    .progress-text {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      font-weight: bold;
+    }
+
+    /* ============================================
+       主内容区域
+    ============================================ */
+    .main {
+      padding-top: 90px;
+      padding-bottom: 120px;
+      max-width: 750px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================
+       标题卡片 - 卡通风格
+    ============================================ */
+    .chapter-title {
+      text-align: center;
+      padding: 40px 20px;
+      margin-bottom: 30px;
+    }
+
+    .chapter-title__number {
+      font-size: 5rem;
+      margin-bottom: 10px;
+      animation: bounce 2s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .chapter-title__main {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 10px 0;
+      text-shadow: 0 4px 20px rgba(255, 159, 67, 0.3);
+    }
+
+    .chapter-title__subtitle {
+      font-size: 1.2rem;
+      color: var(--color-text-secondary);
+      font-style: italic;
+    }
+
+    .chapter-meta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .chapter-meta__item {
+      background: var(--color-bg-card);
+      padding: 10px 18px;
+      border-radius: var(--radius-xl);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 2px solid var(--color-border);
+      transition: var(--transition-default);
+    }
+
+    .chapter-meta__item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* ============================================
+       内容卡片 - 温暖风格
+    ============================================ */
+    .card {
+      background: var(--color-bg-card);
+      border: 3px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-card);
+      animation: slideIn 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-accent-orange), var(--color-accent-pink), var(--color-accent-yellow));
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card--narrative {
+      border-left: 6px solid var(--color-accent-orange);
+    }
+
+    .card--dialogue {
+      border-left: 6px solid var(--color-accent-pink);
+    }
+
+    .card--question {
+      border: 3px solid var(--color-accent-orange);
+      background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(255, 159, 67, 0.05) 100%);
+    }
+
+    .card--easter-egg {
+      border: 3px dashed var(--color-accent-yellow);
+      background: linear-gradient(135deg, rgba(255, 217, 61, 0.1) 0%, var(--color-bg-card) 100%);
+    }
+
+    /* ============================================
+       文本样式
+    ============================================ */
+    .narrative {
+      font-size: 1.1rem;
+      line-height: 2;
+      color: var(--color-text-primary);
+    }
+
+    .narrative p {
+      margin-bottom: 16px;
+    }
+
+    .narrative strong {
+      color: var(--color-accent-orange);
+      font-weight: bold;
+    }
+
+    .narrative em {
+      color: var(--color-accent-pink);
+      font-style: normal;
+      font-weight: bold;
+    }
+
+    .speaker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      color: var(--color-accent-orange);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .speaker__avatar {
+      font-size: 2rem;
+    }
+
+    /* ============================================
+       场景物品展示 - 卡通卡片
+    ============================================ */
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .prop {
+      background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-card) 100%);
+      border: 3px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 20px 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+
+    .prop:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: var(--shadow-glow);
+      border-color: var(--color-accent-orange);
+    }
+
+    .prop:active {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .prop--glow {
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 10px rgba(255, 159, 67, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(255, 159, 67, 0.6); }
+    }
+
+    .prop__icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .prop__name {
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: var(--color-text-primary);
+    }
+
+    .prop__desc {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* ============================================
+       物品栏 - 可爱风格
+    ============================================ */
+    .inventory {
+      background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-card) 100%);
+      border-radius: var(--radius-lg);
+      padding: 25px;
+      margin: 25px 0;
+      border: 3px solid var(--color-accent-yellow);
+    }
+
+    .inventory__title {
+      font-size: 1.1rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+    }
+
+    .inventory__items {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .inventory-item {
+      background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-pink));
+      padding: 14px 22px;
+      border-radius: var(--radius-xl);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(255, 159, 67, 0.3);
+      animation: popIn 0.5s var(--bounce);
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .inventory-item--new {
+      animation: shine 1.5s ease infinite;
+    }
+
+    @keyframes shine {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.3); }
+    }
+
+    /* ============================================
+       选择按钮 - 卡通风格
+    ============================================ */
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 25px 0;
+    }
+
+    .choice-btn {
+      background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-card) 100%);
+      border: 3px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 18px 24px;
+      text-align: left;
+      color: var(--color-text-primary);
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: var(--transition-default);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 500;
+    }
+
+    .choice-btn:hover {
+      background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-yellow));
+      border-color: var(--color-accent-orange);
+      transform: translateX(15px) scale(1.02);
+      color: white;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .choice-btn::before {
+      content: '👉';
+      font-size: 1.3rem;
+      transition: var(--transition-default);
+    }
+
+    .choice-btn:hover::before {
+      content: '✨';
+    }
+
+    .choice-btn--highlight {
+      border-color: var(--color-accent-yellow);
+      background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), var(--color-bg-card));
+    }
+
+    .choice-btn--highlight:hover {
+      background: linear-gradient(135deg, var(--color-accent-yellow), var(--color-accent-orange));
+    }
+
+    /* ============================================
+       继续按钮 - 温暖风格
+    ============================================ */
+    .continue-btn {
+      background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-pink));
+      border: none;
+      border-radius: var(--radius-xl);
+      padding: 18px 50px;
+      color: white;
+      font-size: 1.15rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 35px auto;
+      display: block;
+      transition: var(--transition-default);
+      box-shadow: 0 6px 25px rgba(255, 159, 67, 0.4);
+    }
+
+    .continue-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 35px rgba(255, 159, 67, 0.5);
+    }
+
+    .continue-btn:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* ============================================
+       题目卡片
+    ============================================ */
+    .question-card {
+      background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(255, 159, 67, 0.08) 100%);
+      border-radius: var(--radius-lg);
+      padding: 35px;
+      margin: 35px 0;
+      border: 3px solid var(--color-accent-orange);
+    }
+
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 18px;
+      border-bottom: 2px dashed var(--color-border);
+    }
+
+    .question-number {
+      background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-pink));
+      padding: 8px 16px;
+      border-radius: var(--radius-xl);
+      font-size: 0.9rem;
+      color: white;
+      font-weight: bold;
+    }
+
+    .question-points {
+      color: var(--color-accent-orange);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .question-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--color-text-primary);
+      margin-bottom: 18px;
+    }
+
+    .question-text {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      margin-bottom: 28px;
+      color: var(--color-text-primary);
+    }
+
+    /* 选择题选项 - 卡片风格 */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .option {
+      background: var(--color-bg-card);
+      border: 3px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      cursor: pointer;
+      transition: var(--transition-default);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 1.05rem;
+    }
+
+    .option:hover:not(.option--disabled) {
+      border-color: var(--color-accent-orange);
+      background: rgba(255, 159, 67, 0.1);
+      transform: translateX(10px);
+    }
+
+    .option--selected {
+      border-color: var(--color-accent-orange);
+      background: rgba(255, 159, 67, 0.15);
+    }
+
+    .option--correct {
+      border-color: var(--color-success);
+      background: rgba(76, 175, 80, 0.15);
+    }
+
+    .option--wrong {
+      border-color: var(--color-danger);
+      background: rgba(255, 107, 107, 0.15);
+    }
+
+    .option--disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .option__marker {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--color-bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      border: 2px solid var(--color-border);
+    }
+
+    .option__text {
+      flex: 1;
+    }
+
+    .option__result {
+      font-size: 1.8rem;
+    }
+
+    /* 连线题 */
+    .matching-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 25px 0;
+    }
+
+    .matching-column {
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .matching-column__title {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px dashed var(--color-border);
+      font-size: 1.05rem;
+    }
+
+    .matching-item {
+      background: var(--color-bg-card);
+      border: 3px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: var(--transition-default);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .matching-item:hover {
+      border-color: var(--color-accent-orange);
+      transform: scale(1.02);
+    }
+
+    .matching-item--selected {
+      border-color: var(--color-accent-orange);
+      background: rgba(255, 159, 67, 0.2);
+    }
+
+    .matching-item--matched {
+      border-color: var(--color-success);
+      background: rgba(76, 175, 80, 0.2);
+    }
+
+    /* 简答题 */
+    .answer-area {
+      width: 100%;
+      min-height: 220px;
+      background: var(--color-bg-card);
+      border: 3px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      color: var(--color-text-primary);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      resize: vertical;
+      font-family: inherit;
+      transition: var(--transition-default);
+    }
+
+    .answer-area:focus {
+      outline: none;
+      border-color: var(--color-accent-orange);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .answer-area::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    /* 提交按钮 */
+    .submit-btn {
+      background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-yellow));
+      border: none;
+      border-radius: var(--radius-xl);
+      padding: 16px 40px;
+      color: white;
+      font-size: 1.05rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 22px;
+      transition: var(--transition-default);
+      box-shadow: 0 4px 20px rgba(255, 159, 67, 0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(255, 159, 67, 0.4);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ============================================
+       解析面板 - 温暖风格
+    ============================================ */
+    .explanation {
+      background: linear-gradient(135deg, rgba(255, 159, 67, 0.08) 0%, var(--color-bg-card) 100%);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 25px;
+      margin-top: 25px;
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .explanation__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      font-weight: bold;
+    }
+
+    .explanation__result {
+      padding: 6px 16px;
+      border-radius: var(--radius-xl);
+      font-size: 1rem;
+    }
+
+    .explanation__result--correct {
+      background: rgba(76, 175, 80, 0.2);
+      color: var(--color-success);
+    }
+
+    .explanation__result--wrong {
+      background: rgba(255, 107, 107, 0.2);
+      color: var(--color-danger);
+    }
+
+    .explanation__content {
+      font-size: 1rem;
+      line-height: 1.9;
+      white-space: pre-wrap;
+      color: var(--color-text-primary);
+    }
+
+    /* ============================================
+       成就提示 - 可爱弹窗风格
+    ============================================ */
+    .achievement {
+      background: linear-gradient(135deg, rgba(255, 217, 61, 0.2) 0%, rgba(255, 159, 67, 0.1) 100%);
+      border: 3px solid var(--color-accent-yellow);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin: 25px 0;
+      text-align: center;
+      animation: achievementPop 0.6s var(--bounce);
+    }
+
+    @keyframes achievementPop {
+      0% { transform: scale(0.5); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .achievement__icon {
+      font-size: 4rem;
+      margin-bottom: 15px;
+    }
+
+    .achievement__title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--color-accent-orange);
+      margin-bottom: 10px;
+    }
+
+    .achievement__desc {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       底部导航
+    ============================================ */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 248, 240, 0.98);
+      backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      border-top: 3px solid var(--color-accent-orange);
+      z-index: 100;
+    }
+
+    .footer__btn {
+      background: var(--color-bg-secondary);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 12px 22px;
+      color: var(--color-text-primary);
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition-default);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .footer__btn:hover {
+      background: var(--color-accent-orange);
+      border-color: var(--color-accent-orange);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer__btn--primary {
+      background: linear-gradient(135deg, var(--color-accent-orange), var(--color-accent-pink));
+      border-color: var(--color-accent-orange);
+      color: white;
+    }
+
+    .footer__btn--primary:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    /* ============================================
+       过渡效果
+    ============================================ */
+    .fade-out {
+      animation: fadeOut 0.5s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ============================================
+       响应式设计
+    ============================================ */
+    @media (max-width: 768px) {
+      .header {
+        padding: 10px 15px;
+      }
+
+      .header__logo span {
+        display: none;
+      }
+
+      .progress-bar {
+        width: 70px;
+      }
+
+      .main {
+        padding: 80px 15px 110px;
+      }
+
+      .chapter-title__number {
+        font-size: 3.5rem;
+      }
+
+      .chapter-title__main {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .matching-container {
+        grid-template-columns: 1fr;
+      }
+
+      .question-card {
+        padding: 22px;
+      }
+    }
+
+    /* ============================================
+       隐藏/显示状态
+    ============================================ */
+    .hidden {
+      display: none !important;
+    }
+
+    /* ============================================
+       奖励展示 - 可爱风格
+    ============================================ */
+    .rewards {
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(255, 159, 67, 0.1) 100%);
+      border: 3px solid var(--color-success);
+      border-radius: var(--radius-lg);
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .rewards__title {
+      font-weight: bold;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+    }
+
+    .rewards__list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .reward-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--color-bg-card);
+      border-radius: var(--radius-md);
+      border: 2px solid var(--color-border);
+    }
+
+    .reward-item__icon {
+      font-size: 1.8rem;
+    }
+
+    .reward-item__info {
+      flex: 1;
+    }
+
+    .reward-item__name {
+      font-weight: bold;
+      color: var(--color-text-primary);
+    }
+
+    .reward-item__desc {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* ============================================
+       章节解锁提示
+    ============================================ */
+    .unlock-card {
+      background: linear-gradient(135deg, var(--color-accent-orange) 0%, var(--color-accent-pink) 100%);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      text-align: center;
+      margin: 35px 0;
+      box-shadow: 0 10px 40px rgba(255, 159, 67, 0.4);
+    }
+
+    .unlock-card__icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+    }
+
+    .unlock-card__title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .unlock-card__desc {
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+    }
+
+    .unlock-card__btn {
+      background: white;
+      color: var(--color-accent-orange);
+      border: none;
+      border-radius: var(--radius-xl);
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition-default);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .unlock-card__btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ============================================
+       任务开启卡片
+    ============================================ */
+    .quest-start {
+      text-align: center;
+    }
+
+    .quest-start__title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 15px 0;
+      color: var(--color-accent-orange);
+    }
+  </style>
+</head>
+<body>
+  <div class="game" id="app">
+    <!-- 漂浮装饰元素 -->
+    <div class="floating-decor" id="floating-decor">
+      <span class="floating-item" style="left: 5%; top: 20%; animation-delay: 0s;">✨</span>
+      <span class="floating-item" style="left: 90%; top: 15%; animation-delay: 1s;">⭐</span>
+      <span class="floating-item" style="left: 85%; top: 70%; animation-delay: 2s;">🌟</span>
+      <span class="floating-item" style="left: 8%; top: 60%; animation-delay: 0.5s;">💫</span>
+      <span class="floating-item" style="left: 50%; top: 85%; animation-delay: 1.5s;">✨</span>
+    </div>
+
+    <!-- 头部导航 -->
+    <header class="header">
+      <a href="index.html" class="header__logo">
+        🎮 北大社会学RPG
+      </a>
+      <div class="header__chapter">Day 1 觉醒之夜</div>
+      <div class="header__progress">
+        <div class="progress-bar">
+          <div class="progress-bar__fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+        <span class="progress-text" id="progress-text">0%</span>
+      </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main class="main" id="main-content">
+      <!-- 内容由JS动态渲染 -->
+    </main>
+
+    <!-- 底部导航 -->
+    <footer class="footer" id="footer">
+      <button class="footer__btn" onclick="showInventory()">
+        🎒 背包
+      </button>
+      <button class="footer__btn" onclick="showChapterInfo()">
+        📖 章节
+      </button>
+      <button class="footer__btn footer__btn--primary" onclick="saveProgress()">
+        💾 保存
+      </button>
+    </footer>
+  </div>
+
+  <!-- 引用内容数据 -->
+  <script src="day01-content.js"></script>
+
+  <script>
+    // ============================================
+    // 游戏状态管理
+    // ============================================
+    const GameState = {
+      currentScene: 'scene_desk',
+      currentDialogue: 'opening',
+      currentQuestion: 0,
+      progress: 0,
+      inventory: [],
+      abilities: [],
+      achievements: [],
+      answers: [],
+      flags: {
+        hasSeenOpening: false,
+        hasMetGuide: false,
+        tutorialStarted: false,
+        day01Complete: false
+      }
+    };
+
+    // ============================================
+    // 初始化
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+      renderScene('scene_desk');
+      updateProgress(0);
+    });
+
+    // ============================================
+    // 场景渲染
+    // ============================================
+    function renderScene(sceneId) {
+      const scene = Day01Content.getSceneById(sceneId);
+      const main = document.getElementById('main-content');
+      
+      let html = '';
+      
+      if (sceneId === 'scene_desk') {
+        html = renderDeskScene();
+      } else if (sceneId === 'scene_awakening') {
+        html = renderAwakeningScene();
+      }
+      
+      main.innerHTML = html;
+      main.querySelector('.card, .chapter-title').classList.add('fade-in');
+    }
+
+    // 渲染书桌场景 - 温暖风格
+    function renderDeskScene() {
+      const scene = Day01Content.getSceneById('scene_desk');
+      const elements = scene.elements;
+      
+      const propsHtml = elements.filter(e => e.type === 'prop').map(prop => `
+        <div class="prop ${prop.glowEffect ? 'prop--glow' : ''}" onclick="handlePropClick('${prop.id}')">
+          <div class="prop__icon">${prop.emoji}</div>
+          <div class="prop__name">${prop.name}</div>
+          <div class="prop__desc">${prop.description}</div>
+        </div>
+      `).join('');
+
+      return `
+        <div class="chapter-title">
+          <div class="chapter-title__number">✨ Day 1 ✨</div>
+          <h1 class="chapter-title__main">觉醒之夜</h1>
+          <p class="chapter-title__subtitle">🌟 温暖的考研陪伴 🌟</p>
+          <div class="chapter-meta">
+            <span class="chapter-meta__item">⏱️ 15-20分钟</span>
+            <span class="chapter-meta__item">🌱 难度: ${Day01Content.meta.difficulty}</span>
+            <span class="chapter-meta__item">📚 社会学导论</span>
+          </div>
+        </div>
+
+        <div class="card card--narrative">
+          <div class="speaker">
+            <span class="speaker__avatar">🌙</span>
+            <span>旁白</span>
+          </div>
+          <div class="narrative">
+            <p>✨ <strong>欢迎来到北大社会学考研RPG</strong> ✨</p>
+            <p>夜深了，房间里只有台灯暖暖的光 💡</p>
+            <p>桌上放着明天考试要用到的书，还有一杯妈妈给的热牛奶 🥛</p>
+            <p>今天，你决定再复习一会儿...</p>
+            <p>毕竟社会学真的 <em>很有趣呢</em>！</p>
+            <p>你的目光在书桌上游移，看到了好多熟悉的小东西... 💕</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+            📍 你的温暖小书桌
+          </h3>
+          <div class="props-grid">
+            ${propsHtml}
+          </div>
+        </div>
+
+        <button class="continue-btn" onclick="renderNextDialogue('choice_desk')">
+          🔍 继续探索... ✨
+        </button>
+      `;
+    }
+
+    // 渲染觉醒场景
+    function renderAwakeningScene() {
+      return `
+        <div class="chapter-title">
+          <div class="chapter-title__number">🌌</div>
+          <h1 class="chapter-title__main">无知之海</h1>
+          <p class="chapter-title__subtitle">🌟 知识的星空在召唤... 🌟</p>
+        </div>
+
+        <div class="card card--narrative">
+          <div class="speaker">
+            <span class="speaker__avatar">✨</span>
+            <span>旁白</span>
+          </div>
+          <div class="narrative">
+            <p>✨ 你睁开眼睛，发现自己漂浮在一片星空之中！ ✨</p>
+            <p>无数的星星在身边闪烁 ⭐</p>
+            <p>每一颗都像是一个知识点~</p>
+            <p>脚下是透明的彩虹桥，通向远方...</p>
+            <p>远处，一座温暖光芒的建筑若隐若现 🏛️</p>
+            <p>你听到身后传来轻轻的脚步声... 👣</p>
+          </div>
+        </div>
+
+        <div class="card card--dialogue">
+          <div class="speaker">
+            <span class="speaker__avatar">🎓</span>
+            <span>引路人</span>
+          </div>
+          <div class="narrative">
+            <p>🎓 <strong>"嗨~欢迎来到社会学世界！"</strong></p>
+            <p>一位戴着眼镜、笑容温暖的学长/学姐出现在你面前！</p>
+            <p>🎓 <strong>"我是引路人，你可以叫我学长/学姐~"</strong></p>
+            <p>🎓 <strong>"别紧张！这不是考试哦，只是带你认识一个新朋友..."</strong></p>
+            <p>他从身后拿出一本闪闪发光的小册子：</p>
+            <p>📘 <strong>"这是《社会学入门手册》，送给你！"</strong></p>
+            <p>📘 <strong>"还有这个——👁️ 洞察之眼！"</strong></p>
+          </div>
+        </div>
+
+        <div class="inventory">
+          <div class="inventory__title">
+            <span>🎁</span>
+            <span>新获得物品</span>
+          </div>
+          <div class="inventory__items">
+            <div class="inventory-item inventory-item--new">
+              📘 社会学入门手册
+            </div>
+            <div class="inventory-item inventory-item--new">
+              👁️ 洞察之眼
+            </div>
+          </div>
+        </div>
+
+        <button class="continue-btn" onclick="renderNextDialogue('guide_explain_world')">
+          💬 继续聆听... ✨
+        </button>
+      `;
+    }
+
+    // ============================================
+    // 对话渲染
+    // ============================================
+    function renderDialogue(dialogueId) {
+      const dialogue = Day01Content.getDialogueById(dialogueId);
+      if (!dialogue) return;
+
+      const main = document.getElementById('main-content');
+      let html = '';
+
+      switch (dialogue.type) {
+        case 'narrative':
+          html = renderNarrativeCard(dialogue);
+          break;
+        case 'dialogue':
+          html = renderDialogueCard(dialogue);
+          break;
+        case 'choice':
+          html = renderChoiceCard(dialogue);
+          break;
+        case 'transition':
+          html = renderTransitionCard(dialogue);
+          break;
+        case 'easter_egg':
+          html = renderEasterEggCard(dialogue);
+          break;
+        case 'quest_start':
+          html = renderQuestStartCard(dialogue);
+          break;
+        case 'scene_transition':
+          html = renderSceneTransitionCard(dialogue);
+          break;
+        default:
+          html = renderNarrativeCard(dialogue);
+      }
+
+      main.innerHTML = html;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderNarrativeCard(dialogue) {
+      return `
+        <div class="card card--narrative">
+          ${dialogue.speaker !== '旁白' ? `
+          <div class="speaker">
+            <span class="speaker__avatar">${Day01Content.npcs[dialogue.npc]?.avatar || '📖'}</span>
+            <span>${dialogue.speaker}</span>
+          </div>
+          ` : ''}
+          <div class="narrative">
+            ${dialogue.content.split('\n').map(line => {
+              if (line.trim() === '') return '';
+              return `<p>${line}</p>`;
+            }).join('')}
+          </div>
+          ${dialogue.next ? `
+          <button class="continue-btn" onclick="renderNextDialogue('${dialogue.next}')">
+            ✨ 继续... ✨
+          </button>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function renderDialogueCard(dialogue) {
+      const npc = Day01Content.npcs[dialogue.npc];
+      return `
+        <div class="card card--dialogue">
+          <div class="speaker">
+            <span class="speaker__avatar">${npc?.avatar || '🎓'}</span>
+            <span>${dialogue.speaker}</span>
+          </div>
+          <div class="narrative">
+            ${dialogue.content.split('\n').map(line => {
+              if (line.trim() === '') return '';
+              return `<p>${line}</p>`;
+            }).join('')}
+          </div>
+          ${dialogue.next ? `
+          <button class="continue-btn" onclick="renderNextDialogue('${dialogue.next}')">
+            ✨ 继续... ✨
+          </button>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function renderChoiceCard(dialogue) {
+      return `
+        <div class="card">
+          <div class="speaker">
+            <span class="speaker__avatar">💭</span>
+            <span>${dialogue.speaker || '选择'}</span>
+          </div>
+          <p style="margin-bottom: 20px; font-size: 1.1rem;">${dialogue.content}</p>
+          <div class="choices">
+            ${dialogue.choices.map((choice, idx) => {
+              const isHighlight = choice.flag && choice.flag.includes('easter_egg');
+              return `
+                <button class="choice-btn ${isHighlight ? 'choice-btn--highlight' : ''}" 
+                        onclick="handleChoice('${choice.id}', '${choice.next}', ${choice.flag ? `'${choice.flag}'` : 'null'})">
+                  ${choice.text}
+                </button>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderTransitionCard(dialogue) {
+      return `
+        <div class="card card--narrative">
+          <div style="text-align: center; margin-bottom: 25px;">
+            <h2 style="color: var(--color-accent-orange); font-size: 1.8rem;">${dialogue.title || '✨ 过渡 ✨'}</h2>
+          </div>
+          <div class="narrative">
+            ${dialogue.content.split('\n').map(line => {
+              if (line.trim() === '') return '';
+              return `<p>${line}</p>`;
+            }).join('')}
+          </div>
+          ${dialogue.next ? `
+          <button class="continue-btn" onclick="renderNextDialogue('${dialogue.next}')">
+            ✨ 继续... ✨
+          </button>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function renderSceneTransitionCard(dialogue) {
+      // 先渲染场景转换效果
+      const main = document.getElementById('main-content');
+      main.innerHTML = `
+        <div class="card" style="text-align: center; padding: 60px;">
+          <div style="font-size: 5rem; margin-bottom: 20px;">✨</div>
+          <h2 style="color: var(--color-accent-orange); font-size: 2rem;">${dialogue.title}</h2>
+          <p style="margin-top: 20px; color: var(--color-text-secondary);">正在穿越...</p>
+        </div>
+      `;
+      
+      // 延迟后显示新场景
+      setTimeout(() => {
+        GameState.currentScene = dialogue.targetScene;
+        renderScene(dialogue.targetScene);
+        renderNextDialogue(dialogue.next);
+      }, 1500);
+      
+      return '';
+    }
+
+    function renderEasterEggCard(dialogue) {
+      // 记录彩蛋
+      if (dialogue.achievementId && !GameState.achievements.includes(dialogue.achievementId)) {
+        GameState.achievements.push(dialogue.achievementId);
+      }
+
+      return `
+        <div class="card card--easter-egg">
+          <div class="achievement">
+            <div class="achievement__icon">🔮</div>
+            <div class="achievement__title">${dialogue.achievement || '✨ 彩蛋发现！'}</div>
+            <div class="achievement__desc">
+              ${dialogue.content.split('\n').map(line => {
+                if (line.trim() === '') return '';
+                return line + '<br>';
+              }).join('')}
+            </div>
+          </div>
+          ${dialogue.next ? `
+          <button class="continue-btn" onclick="renderNextDialogue('${dialogue.next}')">
+            ✨ 继续探索... ✨
+          </button>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function renderQuestStartCard(dialogue) {
+      return `
+        <div class="card card--question quest-start">
+          <div class="achievement">
+            <div class="achievement__icon">📜</div>
+            <div class="achievement__title">📜 任务开启：${dialogue.questName}</div>
+            <div class="achievement__desc">${dialogue.description}</div>
+          </div>
+          
+          <div style="margin: 25px 0;">
+            <h4 style="margin-bottom: 15px;">🎁 任务奖励</h4>
+            <div class="rewards__list">
+              ${dialogue.rewards.map(r => `
+                <div class="reward-item">
+                  <span class="reward-item__icon">${r.emoji || '⭐'}</span>
+                  <div class="reward-item__info">
+                    <div class="reward-item__name">${r.name || r.type === 'exp' ? '经验值 +' + r.value : ''}</div>
+                    <div class="reward-item__desc">${r.description}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <button class="continue-btn" onclick="startQuestions()">
+            🎮 开始测试！ ✨
+          </button>
+        </div>
+      `;
+    }
+
+    // ============================================
+    // 对话流程控制
+    // ============================================
+    function renderNextDialogue(dialogueId) {
+      const dialogue = Day01Content.getDialogueById(dialogueId);
+      if (!dialogue) return;
+
+      GameState.currentDialogue = dialogueId;
+
+      if (dialogue.type === 'scene_transition') {
+        renderSceneTransitionCard(dialogue);
+        return;
+      }
+
+      if (dialogue.type === 'scene_change') {
+        GameState.currentScene = dialogue.targetScene;
+        renderScene(dialogue.targetScene);
+        return;
+      }
+
+      renderDialogue(dialogueId);
+      updateProgress(Math.min(100, GameState.progress + 5));
+    }
+
+    function handleChoice(choiceId, nextDialogue, flag) {
+      if (flag) {
+        // 彩蛋相关的选择
+        if (flag.includes('easter_egg') && !GameState.achievements.includes(flag)) {
+          GameState.achievements.push(flag);
+        }
+      }
+      renderNextDialogue(nextDialogue);
+    }
+
+    function handlePropClick(propId) {
+      const scene = Day01Content.getSceneById('scene_desk');
+      const prop = scene.elements.find(e => e.id === propId);
+      
+      if (!prop) return;
+
+      if (prop.easterEgg) {
+        // 彩蛋物品
+        if (!GameState.achievements.includes('easter_egg_' + propId)) {
+          GameState.achievements.push('easter_egg_' + propId);
+        }
+        
+        renderDialogue({
+          type: 'easter_egg',
+          content: prop.easterEggMessage,
+          achievement: prop.name + ' ✨',
+          achievementId: 'easter_egg_' + propId,
+          next: 'choice_desk_return'
+        });
+      } else {
+        // 普通物品描述
+        renderDialogue({
+          type: 'narrative',
+          speaker: '旁白',
+          content: `${prop.emoji} ${prop.description}
+
+这个小东西陪着你度过了很多个努力的夜晚呢~ 💕
+${propId === 'sticker' ? '看到它就觉得好温暖...' : ''}
+${propId === 'plant' ? '小多肉也要早点休息哦~' : ''}
+${propId === 'coffee' ? '牛奶暖暖的，妈妈的爱~' : ''}
+${propId === 'clock' ? '不早了哦，今晚要早点睡~' : ''}`,
+          next: null
+        });
+      }
+    }
+
+    // ============================================
+    // 题目系统
+    // ============================================
+    function startQuestions() {
+      GameState.currentQuestion = 0;
+      selectedOption = null;
+      selectedCorrect = null;
+      matchingState = { leftSelected: null, rightSelected: null, matched: [] };
+      renderQuestion(0);
+    }
+
+    function renderQuestion(index) {
+      const question = Day01Content.questions[index];
+      if (!question) {
+        showEnding();
+        return;
+      }
+
+      GameState.currentQuestion = index;
+      const main = document.getElementById('main-content');
+
+      let html = `
+        <div class="card card--question">
+          <div class="question-header">
+            <span class="question-number">📝 第 ${index + 1} / ${Day01Content.questions.length} 题</span>
+            <span class="question-points">💎 ${question.points}分</span>
+          </div>
+          <h3 class="question-title">${question.title}</h3>
+          <div class="question-text">${question.question.replace(/\n/g, '<br>')}</div>
+      `;
+
+      if (question.type === 'choice') {
+        html += renderChoiceQuestion(question);
+      } else if (question.type === 'matching') {
+        html += renderMatchingQuestion(question);
+      } else if (question.type === 'short_answer') {
+        html += renderShortAnswerQuestion(question);
+      }
+
+      html += `</div>`;
+      main.innerHTML = html;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderChoiceQuestion(question) {
+      return `
+        <div class="options">
+          ${question.options.map(opt => `
+            <div class="option" id="option-${opt.id}" onclick="selectOption('${opt.id}', ${opt.isCorrect})">
+              <span class="option__marker">${opt.id}</span>
+              <span class="option__text">${opt.text}</span>
+              <span class="option__result"></span>
+            </div>
+          `).join('')}
+        </div>
+        <div id="explanation-panel" class="hidden"></div>
+        <button class="submit-btn hidden" id="next-question-btn" onclick="nextQuestion()">
+          ${GameState.currentQuestion < Day01Content.questions.length - 1 ? '📝 下一题' : '🎉 查看结果'}
+        </button>
+      `;
+    }
+
+    function renderMatchingQuestion(question) {
+      const matching = question.matching;
+      return `
+        <p style="margin-bottom: 20px; text-align: center;">🎮 请帮左右两边的选项找到正确配对~</p>
+        <div class="matching-container">
+          <div class="matching-column">
+            <div class="matching-column__title">🔷 概念</div>
+            ${matching.left.map(item => `
+              <div class="matching-item" id="left-${item.id}" onclick="selectMatchingItem('left', '${item.id}')">
+                ${item.emoji || ''} ${item.text}
+              </div>
+            `).join('')}
+          </div>
+          <div class="matching-column">
+            <div class="matching-column__title">🔶 对应解释</div>
+            ${matching.right.map(item => `
+              <div class="matching-item" id="right-${item.id}" onclick="selectMatchingItem('right', '${item.id}')">
+                ${item.emoji || ''} ${item.text}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div id="matching-result"></div>
+        <div id="explanation-panel" class="hidden"></div>
+        <button class="submit-btn" id="matching-submit-btn" onclick="submitMatching()">
+          ✅ 确认连线
+        </button>
+      `;
+    }
+
+    function renderShortAnswerQuestion(question) {
+      return `
+        <p style="margin-bottom: 15px; color: var(--color-text-secondary);">
+          💡 提示：${question.hint || '写下你的理解吧~'}
+        </p>
+        <textarea class="answer-area" id="answer-text" 
+                  placeholder="在这里写下你的思考... ✨&#10;&#10;不用紧张，言之有理即可~"></textarea>
+        <div id="explanation-panel" class="hidden"></div>
+        <button class="submit-btn" id="short-answer-btn" onclick="submitShortAnswer()">
+          ✨ 提交答案
+        </button>
+      `;
+    }
+
+    // 选择题逻辑
+    let selectedOption = null;
+    let selectedCorrect = null;
+
+    function selectOption(optId, isCorrect) {
+      if (selectedOption) return;
+      
+      selectedOption = optId;
+      selectedCorrect = isCorrect;
+
+      document.querySelectorAll('.option').forEach(el => {
+        el.classList.add('option--disabled');
+      });
+
+      const selected = document.getElementById(`option-${optId}`);
+      selected.classList.add('option--selected');
+      selected.classList.remove('option--disabled');
+
+      // 记录答案
+      GameState.answers.push({
+        questionId: Day01Content.questions[GameState.currentQuestion].id,
+        selected: optId,
+        correct: isCorrect
+      });
+
+      // 显示所有选项结果
+      document.querySelectorAll('.option').forEach(el => {
+        const id = el.id.replace('option-${optId}', '').replace('option-', '');
+        const opt = Day01Content.questions[GameState.currentQuestion].options.find(o => o.id === id || el.id === 'option-' + o.id);
+        if (opt && opt.isCorrect) {
+          el.classList.add('option--correct');
+          el.querySelector('.option__result').textContent = '✓';
+        }
+      });
+
+      if (!isCorrect) {
+        selected.classList.add('option--wrong');
+        selected.querySelector('.option__result').textContent = '✗';
+      }
+
+      // 显示带emoji的解析
+      showExplanationWithEmoji(isCorrect);
+      
+      // 显示下一题按钮
+      document.getElementById('next-question-btn').classList.remove('hidden');
+      updateProgress(Math.min(100, GameState.progress + 15));
+    }
+
+    function showExplanationWithEmoji(isCorrect) {
+      const question = Day01Content.questions[GameState.currentQuestion];
+      const panel = document.getElementById('explanation-panel');
+      const feedback = isCorrect ? question.feedback?.correct || '🎉 正确！太棒了！' : question.feedback?.wrong || '🤔 再想想看~';
+      
+      panel.classList.remove('hidden');
+      panel.innerHTML = `
+        <div class="explanation">
+          <div class="explanation__header">
+            <span style="font-size: 2rem;">${isCorrect ? '🎉' : '🤔'}</span>
+            <span class="explanation__result ${isCorrect ? 'explanation__result--correct' : 'explanation__result--wrong'}">
+              ${feedback}
+            </span>
+          </div>
+          <div class="explanation__content">${question.explanation}</div>
+        </div>
+      `;
+    }
+
+    function nextQuestion() {
+      selectedOption = null;
+      selectedCorrect = null;
+      renderQuestion(GameState.currentQuestion + 1);
+    }
+
+    // 连线题逻辑
+    let matchingState = {
+      leftSelected: null,
+      rightSelected: null,
+      matched: []
+    };
+
+    function selectMatchingItem(side, id) {
+      if (matchingState.matched.includes(id)) return;
+
+      if (side === 'left') {
+        document.querySelectorAll('.matching-column:first-child .matching-item').forEach(el => {
+          el.classList.remove('matching-item--selected');
+        });
+        document.getElementById(`left-${id}`).classList.add('matching-item--selected');
+        matchingState.leftSelected = id;
+      } else {
+        document.querySelectorAll('.matching-column:last-child .matching-item').forEach(el => {
+          el.classList.remove('matching-item--selected');
+        });
+        document.getElementById(`right-${id}`).classList.add('matching-item--selected');
+        matchingState.rightSelected = id;
+      }
+
+      // 如果两边都选了，自动连线
+      if (matchingState.leftSelected && matchingState.rightSelected) {
+        const leftEl = document.getElementById(`left-${matchingState.leftSelected}`);
+        const rightEl = document.getElementById(`right-${matchingState.rightSelected}`);
+        
+        leftEl.classList.remove('matching-item--selected');
+        rightEl.classList.remove('matching-item--selected');
+        
+        matchingState.matched.push(matchingState.leftSelected, matchingState.rightSelected);
+        leftEl.classList.add('matching-item--matched');
+        rightEl.classList.add('matching-item--matched');
+        
+        matchingState.leftSelected = null;
+        matchingState.rightSelected = null;
+      }
+    }
+
+    function submitMatching() {
+      const question = Day01Content.questions[GameState.currentQuestion];
+      const matching = question.matching;
+      
+      let correct = 0;
+      let total = matching.left.length;
+
+      matching.left.forEach(leftItem => {
+        const rightItem = matching.right.find(r => r.correct === leftItem.id);
+        if (matchingState.matched.includes(leftItem.id) && matchingState.matched.includes(rightItem.id)) {
+          correct++;
+        }
+      });
+
+      const isCorrect = correct === total;
+
+      GameState.answers.push({
+        questionId: question.id,
+        correct: isCorrect,
+        score: (correct / total) * question.points
+      });
+
+      // 显示结果
+      const resultDiv = document.getElementById('matching-result');
+      resultDiv.innerHTML = `
+        <div class="explanation">
+          <div class="explanation__header">
+            <span style="font-size: 2rem;">${isCorrect ? '🎉' : '🤔'}</span>
+            <span class="explanation__result ${isCorrect ? 'explanation__result--correct' : 'explanation__result--wrong'}">
+              ${isCorrect ? question.feedback?.correct || '完美匹配！' : `答对 ${correct}/${total} 对`}
+            </span>
+          </div>
+        </div>
+      `;
+
+      // 显示解析
+      const panel = document.getElementById('explanation-panel');
+      panel.classList.remove('hidden');
+      panel.innerHTML = `
+        <div class="explanation">
+          <div class="explanation__content">${question.explanation}</div>
+        </div>
+      `;
+
+      // 更新按钮
+      const submitBtn = document.getElementById('matching-submit-btn');
+      submitBtn.textContent = '📝 ' + (GameState.currentQuestion < Day01Content.questions.length - 1 ? '下一题' : '查看结果');
+      submitBtn.onclick = () => {
+        matchingState = { leftSelected: null, rightSelected: null, matched: [] };
+        nextQuestion();
+      };
+
+      updateProgress(Math.min(100, GameState.progress + 15));
+    }
+
+    // 简答题逻辑
+    function submitShortAnswer() {
+      const answer = document.getElementById('answer-text').value;
+      const question = Day01Content.questions[GameState.currentQuestion];
+
+      if (answer.trim().length < 30) {
+        alert('💭 再多写一点吧~ 至少30个字哦！');
+        return;
+      }
+
+      GameState.answers.push({
+        questionId: question.id,
+        answer: answer,
+        scored: true
+      });
+
+      // 显示反馈
+      const panel = document.getElementById('explanation-panel');
+      panel.classList.remove('hidden');
+      panel.innerHTML = `
+        <div class="explanation">
+          <div class="explanation__header">
+            <span style="font-size: 2rem;">💖</span>
+            <span class="explanation__result explanation__result--correct">你的回答已提交！</span>
+          </div>
+          <div class="explanation__content">
+            <strong>✨ 【参考答案】✨</strong>
+            ${question.modelAnswer}
+          </div>
+        </div>
+      `;
+
+      updateProgress(Math.min(100, GameState.progress + 15));
+      
+      // 隐藏提交按钮，显示下一题
+      document.getElementById('short-answer-btn').classList.add('hidden');
+      
+      setTimeout(() => {
+        nextQuestion();
+      }, 3000);
+    }
+
+    // ============================================
+    // 结局
+    // ============================================
+    function showEnding() {
+      const main = document.getElementById('main-content');
+      const ending = Day01Content.endings.success;
+
+      GameState.flags.day01Complete = true;
+      GameState.inventory.push('社会学入门手册', '洞察之眼', '社会学小达人徽章');
+      updateProgress(100);
+
+      main.innerHTML = `
+        <div class="chapter-title">
+          <div class="chapter-title__number">🎊</div>
+          <h1 class="chapter-title__main">${ending.title}</h1>
+        </div>
+
+        <div class="card card--narrative">
+          <div class="narrative">
+            ${ending.content.split('\n').map(line => {
+              if (line.trim() === '') return '';
+              return `<p>${line}</p>`;
+            }).join('')}
+          </div>
+        </div>
+
+        <div class="rewards">
+          <div class="rewards__title">🎁 获得奖励</div>
+          <div class="rewards__list">
+            ${ending.rewards.map(r => `
+              <div class="reward-item">
+                <span class="reward-item__icon">${r.emoji || '⭐'}</span>
+                <div class="reward-item__info">
+                  <div class="reward-item__name">${r.name || r.type === 'exp' ? '经验值 +' + r.value : ''}</div>
+                  <div class="reward-item__desc">${r.description}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="unlock-card">
+          <div class="unlock-card__icon">🔓</div>
+          <h3 class="unlock-card__title">${ending.nextChapter.title}</h3>
+          <p class="unlock-card__desc">${ending.nextChapter.description}<br>${ending.nextChapter.hint}</p>
+          <button class="unlock-card__btn" onclick="goToNextChapter()">
+            进入 Day 2 →
+          </button>
+        </div>
+
+        <div style="text-align: center; margin-top: 35px;">
+          <a href="index.html" class="footer__btn" style="text-decoration: none; display: inline-flex;">
+            ← 返回首页
+          </a>
+        </div>
+      `;
+    }
+
+    function goToNextChapter() {
+      alert('🎉 Day 2：实证之光 即将开放！\n\n你已完成 Day 1 的学习~\n温暖的考研之路，我们继续前行！\n\n💪 考研必胜！北大见！');
+    }
+
+    // ============================================
+    // 工具函数
+    // ============================================
+    function updateProgress(value) {
+      GameState.progress = Math.min(100, value);
+      document.getElementById('progress-fill').style.width = GameState.progress + '%';
+      document.getElementById('progress-text').textContent = GameState.progress + '%';
+    }
+
+    function showInventory() {
+      const items = [...GameState.inventory, ...GameState.abilities];
+      const easterEggs = GameState.achievements.filter(a => a.includes('easter_egg'));
+      
+      let msg = '🎒 背包\n\n';
+      msg += '📦 物品：' + (items.length > 0 ? '\n' + items.map(i => '  • ' + i).join('\n') : '  空空如也~');
+      msg += '\n\n🔮 发现彩蛋：' + easterEggs.length + ' 个';
+      
+      alert(msg);
+    }
+
+    function showChapterInfo() {
+      const meta = Day01Content.meta;
+      alert(`📖 章节信息\n\n✨ ${meta.title}\n${meta.subtitle}\n\n🌱 难度：${meta.difficulty}\n⏱️ 预计时长：${meta.estimatedTime}\n📚 关键词：${meta.keywords.join('、')}\n\n💡 这是一个温暖的开始~`);
+    }
+
+    function saveProgress() {
+      localStorage.setItem('pku-sociology-rpg-day01', JSON.stringify(GameState));
+      alert('💾 进度已保存！\n\n继续加油，考研人！✨');
+    }
+
+    function loadProgress() {
+      const saved = localStorage.getItem('pku-sociology-rpg-day01');
+      if (saved) {
+        Object.assign(GameState, JSON.parse(saved));
+      }
+    }
+
+    loadProgress();
+  </script>
+</body>
+</html>

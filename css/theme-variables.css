@@ -1,0 +1,359 @@
+/**
+ * 北大社会学考研RPG - CSS变量配置
+ * theme-variables.css - 暖色调主题统一管理
+ * 
+ * 使用方式：在HTML中引入此文件，或复制变量到主CSS中
+ */
+
+/* ==================== 颜色变量 ==================== */
+:root {
+    /* 主色调 - 暖色系 */
+    --color-primary: #FF9F43;        /* 暖橙 - 主色调 */
+    --color-secondary: #F8B500;      /* 琥珀 - 次色调 */
+    --color-accent: #FF6B6B;         /* 珊瑚红 - 强调色 */
+    --color-accent-light: #FFA07A;   /* 浅珊瑚 */
+    
+    /* 功能色 */
+    --color-success: #4CAF50;        /* 成功绿 */
+    --color-mint: #00D9C0;           /* 薄荷绿 */
+    --color-warning: #FFB347;        /* 警告橙 */
+    --color-danger: #FF4757;         /* 危险红 */
+    --color-info: #74B9FF;           /* 信息蓝 */
+    
+    /* 背景色 - 暖灰/米白渐变 */
+    --bg-gradient-start: #FFF8F0;     /* 暖白起点 */
+    --bg-gradient-end: #FFE8D6;      /* 暖杏终点 */
+    --bg-primary: #FFF8F0;           /* 主背景 */
+    --bg-secondary: #FFF5EB;         /* 次背景 */
+    --bg-card: #FFFFFF;             /* 卡片背景 */
+    --bg-card-hover: #FFF9F5;        /* 卡片悬停 */
+    
+    /* 文字色 */
+    --text-primary: #4A4A4A;         /* 主文字 */
+    --text-secondary: #7A7A7A;       /* 次文字 */
+    --text-muted: #AAAAAA;          /* 弱化文字 */
+    --text-inverse: #FFFFFF;        /* 反色文字 */
+    
+    /* 边框色 */
+    --border-light: #FFE8D6;         /* 浅边框 */
+    --border-primary: #FFD4B8;      /* 主边框 */
+    --border-focus: #FF9F43;        /* 聚焦边框 */
+    
+    /* 阴影色 */
+    --shadow-color: rgba(255, 159, 67, 0.15);  /* 暖色阴影 */
+    --shadow-light: rgba(255, 159, 67, 0.08);
+    --shadow-medium: rgba(255, 159, 67, 0.2);
+    --shadow-heavy: rgba(255, 159, 67, 0.3);
+    
+    /* 渐变 */
+    --gradient-warm: linear-gradient(135deg, #FF9F43 0%, #FF6B6B 100%);
+    --gradient-gold: linear-gradient(135deg, #F8B500 0%, #FF9F43 100%);
+    --gradient-success: linear-gradient(135deg, #4CAF50 0%, #00D9C0 100%);
+    --gradient-bg: linear-gradient(180deg, #FFF8F0 0%, #FFE8D6 100%);
+    
+    /* ==================== 圆角变量 ==================== */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* ==================== 间距变量 ==================== */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    
+    /* ==================== 字体变量 ==================== */
+    --font-primary: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    
+    /* ==================== 动画变量 ==================== */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+    
+    /* ==================== Z-Index层级 ==================== */
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-modal-backdrop: 300;
+    --z-modal: 400;
+    --z-toast: 500;
+    --z-tooltip: 600;
+}
+
+/* ==================== 暗色主题（可选） ==================== */
+@media (prefers-color-scheme: dark) {
+    :root[data-theme="dark"] {
+        --bg-primary: #1A1A2E;
+        --bg-secondary: #16213E;
+        --bg-card: #0F3460;
+        --text-primary: #EAEAEA;
+        --text-secondary: #B0B0B0;
+        --border-light: #2A2A4A;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ==================== 公共样式类 ==================== */
+
+/* 暖色调按钮 */
+.btn-warm {
+    background: var(--gradient-warm);
+    color: var(--text-inverse);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--font-size-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+.btn-warm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-heavy);
+}
+
+.btn-warm:active {
+    transform: translateY(0);
+}
+
+/* 卡片样式 */
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: 0 4px 20px var(--shadow-light);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+}
+
+.card:hover {
+    box-shadow: 0 8px 30px var(--shadow-color);
+    border-color: var(--border-primary);
+}
+
+/* 进度条样式 */
+.progress-warm {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-warm .fill {
+    background: var(--gradient-warm);
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width var(--transition-slow);
+}
+
+/* 标签样式 */
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+}
+
+.tag-warm {
+    background: rgba(255, 159, 67, 0.15);
+    color: var(--color-primary);
+}
+
+.tag-success {
+    background: rgba(76, 175, 80, 0.15);
+    color: var(--color-success);
+}
+
+.tag-mint {
+    background: rgba(0, 217, 192, 0.15);
+    color: var(--color-mint);
+}
+
+/* 成就卡片 */
+.achievement-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    transition: all var(--transition-normal);
+}
+
+.achievement-card.unlocked {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 20px var(--shadow-light);
+}
+
+.achievement-card.locked {
+    opacity: 0.6;
+    filter: grayscale(0.5);
+}
+
+/* 日历格子 */
+.calendar-day {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.calendar-day.completed {
+    background: var(--gradient-warm);
+    color: var(--text-inverse);
+}
+
+.calendar-day.current {
+    background: var(--bg-secondary);
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.calendar-day.locked {
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* 模态框 */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+}
+
+.modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform var(--transition-normal);
+}
+
+.modal.open .modal-content {
+    transform: scale(1);
+}
+
+/* Toast提示 */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--bg-card);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 40px var(--shadow-heavy);
+    z-index: var(--z-toast);
+    opacity: 0;
+    transition: all var(--transition-normal);
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast-success {
+    border-left: 4px solid var(--color-success);
+}
+
+.toast-error {
+    border-left: 4px solid var(--color-danger);
+}
+
+.toast-warning {
+    border-left: 4px solid var(--color-warning);
+}
+
+/* 背景动画 */
+@keyframes warmPulse {
+    0%, 100% {
+        background: var(--gradient-bg);
+    }
+    50% {
+        background: linear-gradient(180deg, #FFF8F0 0%, #FFE0C8 100%);
+    }
+}
+
+.warm-background {
+    animation: warmPulse 8s ease-in-out infinite;
+}
+
+/* 发光效果 */
+.glow-warm {
+    box-shadow: 0 0 20px var(--shadow-medium),
+                0 0 40px var(--shadow-light);
+}
+
+.glow-gold {
+    box-shadow: 0 0 20px rgba(248, 181, 0, 0.3),
+                0 0 40px rgba(248, 181, 0, 0.15);
+}
+
+/* 加载动画 */
+@keyframes warmSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.warm-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-light);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: warmSpin 1s linear infinite;
+}
+
+/* 打字机光标 */
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--color-primary);
+    margin-left: 2px;
+    animation: cursorBlink 1s infinite;
+}

@@ -1,0 +1,639 @@
+{
+  "achievements": [
+    {
+      "id": "first_step",
+      "name": "🌱 第一步",
+      "description": "完成社会学导论学习",
+      "condition": {
+        "type": "complete_day",
+        "day": 1
+      },
+      "xpReward": 50,
+      "icon": "🌱",
+      "rarity": "common",
+      "hint": "继续加油！社会学的大门已经为你敞开..."
+    },
+    {
+      "id": "perfect_day",
+      "name": "⭐ 完美一天",
+      "description": "某天所有题目全对",
+      "condition": {
+        "type": "perfect_score",
+        "day": "any"
+      },
+      "xpReward": 100,
+      "icon": "⭐",
+      "rarity": "rare",
+      "hint": "这需要扎实的基础和细致的理解！"
+    },
+    {
+      "id": "real_exam_hunter",
+      "name": "🎯 真题猎人",
+      "description": "答对10道北大社会学考研原题",
+      "condition": {
+        "type": "correct_real_exam",
+        "count": 10
+      },
+      "xpReward": 300,
+      "icon": "🎯",
+      "rarity": "epic",
+      "hint": "这些真题来自2019-2024年北大社会学考研",
+      "isEasterEgg": true
+    },
+    {
+      "id": "durkheim_discoverer",
+      "name": "📖 涂尔干入门",
+      "description": "解锁涂尔干的全部对话",
+      "condition": {
+        "type": "npc_dialogue_complete",
+        "npc": "durkeim"
+      },
+      "xpReward": 150,
+      "icon": "📖",
+      "rarity": "rare",
+      "requires": ["first_step"]
+    },
+    {
+      "id": "weber_discoverer",
+      "name": "🔑 韦伯之门",
+      "description": "解锁韦伯的全部对话",
+      "condition": {
+        "type": "npc_dialogue_complete",
+        "npc": "weber"
+      },
+      "xpReward": 150,
+      "icon": "🔑",
+      "rarity": "rare",
+      "requires": ["first_step"]
+    },
+    {
+      "id": "marx_discoverer",
+      "name": "⚔️ 批判觉醒",
+      "description": "解锁马克思的全部对话",
+      "condition": {
+        "type": "npc_dialogue_complete",
+        "npc": "marx"
+      },
+      "xpReward": 150,
+      "icon": "⚔️",
+      "rarity": "rare",
+      "requires": ["first_step"]
+    },
+    {
+      "id": "classical_master",
+      "name": "🏛️ 古典大师",
+      "description": "完成古典理论全部章节",
+      "condition": {
+        "type": "complete_chapter_range",
+        "startDay": 11,
+        "endDay": 30
+      },
+      "xpReward": 500,
+      "icon": "🏛️",
+      "rarity": "epic",
+      "hint": "涂尔干、韦伯、马克思——三大理论传统尽在掌握！"
+    },
+    {
+      "id": "methodology_master",
+      "name": "🔬 方法论专家",
+      "description": "完成社会研究方法全部章节",
+      "condition": {
+        "type": "complete_chapter_range",
+        "startDay": 51,
+        "endDay": 70
+      },
+      "xpReward": 400,
+      "icon": "🔬",
+      "rarity": "epic",
+      "hint": "掌握实证主义与理解社会学的精髓！"
+    },
+    {
+      "id": "contemporary_thinker",
+      "name": "🌟 当代理论家",
+      "description": "完成当代社会理论全部章节",
+      "condition": {
+        "type": "complete_chapter_range",
+        "startDay": 71,
+        "endDay": 90
+      },
+      "xpReward": 400,
+      "icon": "🌟",
+      "rarity": "epic",
+      "hint": "布迪厄、福柯...当代理论的精华！"
+    },
+    {
+      "id": "exam_warrior",
+      "name": "💎 真题战士",
+      "description": "完成全部真题演练",
+      "condition": {
+        "type": "complete_chapter_range",
+        "startDay": 91,
+        "endDay": 100
+      },
+      "xpReward": 600,
+      "icon": "💎",
+      "rarity": "legendary",
+      "hint": "百日冲刺，最后的考验！"
+    },
+    {
+      "id": "library_explorer",
+      "name": "📚 知识探索者",
+      "description": "访问图书馆5次",
+      "condition": {
+        "type": "visit_location",
+        "location": "library",
+        "count": 5
+      },
+      "xpReward": 100,
+      "icon": "📚",
+      "rarity": "common",
+      "hint": "图书馆里也许藏着什么..."
+    },
+    {
+      "id": "seniors_notes",
+      "name": "📝 前辈的足迹",
+      "description": "找到图书馆角落的考研笔记",
+      "condition": {
+        "type": "find_item",
+        "item": "前辈的笔记"
+      },
+      "xpReward": 200,
+      "icon": "📝",
+      "rarity": "rare",
+      "isEasterEgg": true,
+      "hint": "那些留在图书馆角落的泛黄笔记本..."
+    },
+    {
+      "id": "hidden_npc_unlocked",
+      "name": "🎓 通关学姐",
+      "description": "解锁隐藏NPC：北大上岸学姐",
+      "condition": {
+        "type": "unlock_npc",
+        "npc": "senior_student"
+      },
+      "xpReward": 300,
+      "icon": "🎓",
+      "rarity": "epic",
+      "isEasterEgg": true,
+      "requires": ["seniors_notes"],
+      "hint": "找到学姐笔记后与她对话"
+    },
+    {
+      "id": "suicide_study",
+      "name": "🔍 自杀论研读者",
+      "description": "找到《自杀论》并完成涂尔干测试",
+      "condition": {
+        "type": "find_item",
+        "item": "《自杀论》"
+      },
+      "xpReward": 150,
+      "icon": "🔍",
+      "rarity": "rare",
+      "isEasterEgg": true,
+      "requires": ["durkheim_discoverer"]
+    },
+    {
+      "id": "iron_cage_key",
+      "name": "🗝️ 铁笼钥匙",
+      "description": "理解韦伯理性化理论的深层含义",
+      "condition": {
+        "type": "understand_concept",
+        "concept": "理性化铁笼"
+      },
+      "xpReward": 200,
+      "icon": "🗝️",
+      "rarity": "rare",
+      "isEasterEgg": true,
+      "requires": ["weber_discoverer"]
+    },
+    {
+      "id": "field_master",
+      "name": "🌌 场域大师",
+      "description": "掌握布迪厄场域理论的核心概念",
+      "condition": {
+        "type": "understand_concept",
+        "concept": "场域"
+      },
+      "xpReward": 200,
+      "icon": "🌌",
+      "rarity": "rare",
+      "isEasterEgg": true,
+      "requires": ["contemporary_thinker"]
+    },
+    {
+      "id": "perfect_classical",
+      "name": "💯 古典理论满分",
+      "description": "古典理论章节测试全部满分",
+      "condition": {
+        "type": "perfect_score",
+        "day": 18
+      },
+      "xpReward": 400,
+      "icon": "💯",
+      "rarity": "epic",
+      "requires": ["classical_master"]
+    },
+    {
+      "id": "perfect_method",
+      "name": "🔬 方法论满分",
+      "description": "研究方法章节测试全部满分",
+      "condition": {
+        "type": "perfect_score",
+        "day": 60
+      },
+      "xpReward": 400,
+      "icon": "🔬",
+      "rarity": "epic",
+      "requires": ["methodology_master"]
+    },
+    {
+      "id": "ten_day_streak",
+      "name": "🔥 十日连击",
+      "description": "连续学习10天",
+      "condition": {
+        "type": "streak",
+        "days": 10
+      },
+      "xpReward": 200,
+      "icon": "🔥",
+      "rarity": "rare",
+      "hint": "坚持就是胜利！"
+    },
+    {
+      "id": "thirty_day_streak",
+      "name": "💪 月度坚持",
+      "description": "连续学习30天",
+      "condition": {
+        "type": "streak",
+        "days": 30
+      },
+      "xpReward": 500,
+      "icon": "💪",
+      "rarity": "epic",
+      "hint": "你已经超过了大多数人！"
+    },
+    {
+      "id": "fifty_day_streak",
+      "name": "🏆 半程王者",
+      "description": "连续学习50天",
+      "condition": {
+        "type": "streak",
+        "days": 50
+      },
+      "xpReward": 800,
+      "icon": "🏆",
+      "rarity": "legendary",
+      "hint": "半程已过，终点在望！"
+    },
+    {
+      "id": "hundred_day_master",
+      "name": "👑 百年如一",
+      "description": "完成100天全部学习任务",
+      "condition": {
+        "type": "complete_day",
+        "day": 100
+      },
+      "xpReward": 1000,
+      "icon": "👑",
+      "rarity": "legendary",
+      "hint": "你做到了！这是一段难忘的旅程..."
+    },
+    {
+      "id": "night_owl",
+      "name": "🦉 夜猫子",
+      "description": "在深夜完成一次学习",
+      "condition": {
+        "type": "study_at_time",
+        "time": "night"
+      },
+      "xpReward": 50,
+      "icon": "🦉",
+      "rarity": "common"
+    },
+    {
+      "id": "early_bird",
+      "name": "🐦 早起鸟",
+      "description": "在清晨完成一次学习",
+      "condition": {
+        "type": "study_at_time",
+        "time": "early_morning"
+      },
+      "xpReward": 50,
+      "icon": "🐦",
+      "rarity": "common"
+    },
+    {
+      "id": "speed_demon",
+      "name": "⚡ 闪电侠",
+      "description": "在10分钟内完成一套测试",
+      "condition": {
+        "type": "complete_test",
+        "time": 600
+      },
+      "xpReward": 100,
+      "icon": "⚡",
+      "rarity": "rare",
+      "hint": "又快又准！"
+    },
+    {
+      "id": "thorough_scholar",
+      "name": "📖 细致学者",
+      "description": "完成一道简答题后阅读完整解析",
+      "condition": {
+        "type": "read_explanation",
+        "count": 1
+      },
+      "xpReward": 30,
+      "icon": "📖",
+      "rarity": "common",
+      "hint": "理解比死记更重要！"
+    },
+    {
+      "id": "collector",
+      "name": "🏅 收藏家",
+      "description": "解锁10个成就",
+      "condition": {
+        "type": "achievement_count",
+        "count": 10
+      },
+      "xpReward": 200,
+      "icon": "🏅",
+      "rarity": "rare"
+    },
+    {
+      "id": "theory_master",
+      "name": "🎓 理论大师",
+      "description": "解锁全部理论家NPC的全部对话",
+      "condition": {
+        "type": "all_npc_complete",
+        "category": "theorists"
+      },
+      "xpReward": 800,
+      "icon": "🎓",
+      "rarity": "legendary",
+      "requires": ["durkheim_discoverer", "weber_discoverer", "marx_discoverer"]
+    },
+    {
+      "id": "all_stars",
+      "name": "🌟 全明星",
+      "description": "与所有NPC对话至少一次",
+      "condition": {
+        "type": "meet_all_npc"
+      },
+      "xpReward": 300,
+      "icon": "🌟",
+      "rarity": "epic"
+    },
+    {
+      "id": "bourdieu_breaker",
+      "name": "🌌 场域破壁者",
+      "description": "掌握布迪厄全部核心理论",
+      "condition": {
+        "type": "understand_concept",
+        "concept": "全部布迪厄概念"
+      },
+      "xpReward": 400,
+      "icon": "🌌",
+      "rarity": "epic",
+      "requires": ["field_master"]
+    },
+    {
+      "id": "foucault_revelation",
+      "name": "🔮 福柯启示",
+      "description": "解锁福柯的全部彩蛋对话",
+      "condition": {
+        "type": "npc_dialogue_complete",
+        "npc": "foucault"
+      },
+      "xpReward": 300,
+      "icon": "🔮",
+      "rarity": "epic",
+      "isEasterEgg": true
+    },
+    {
+      "id": "survivor",
+      "name": "🔥 幸存者",
+      "description": "在第50天之后继续坚持",
+      "condition": {
+        "type": "reach_day",
+        "day": 50
+      },
+      "xpReward": 200,
+      "icon": "🔥",
+      "rarity": "rare",
+      "hint": "引路人说过：有人在第50天放弃..."
+    },
+    {
+      "id": "no_straight_a",
+      "name": "🌀 曲折之路",
+      "description": "虽然不是每天都满分，但坚持到了最后",
+      "condition": {
+        "type": "complete_day",
+        "day": 100
+      },
+      "xpReward": 300,
+      "icon": "🌀",
+      "rarity": "rare",
+      "hint": "不完美但坚持，这就是胜利！"
+    },
+    {
+      "id": "perfect_journey",
+      "name": "✨ 完美旅程",
+      "description": "100天全部满分",
+      "condition": {
+        "type": "perfect_100_days"
+      },
+      "xpReward": 2000,
+      "icon": "✨",
+      "rarity": "mythical",
+      "hint": "你是社会学考研的传奇！"
+    },
+    {
+      "id": "lucky_charm",
+      "name": "🍀 幸运符",
+      "description": "随机触发的好运（每日登录奖励）",
+      "condition": {
+        "type": "daily_login"
+      },
+      "xpReward": 10,
+      "icon": "🍀",
+      "rarity": "common",
+      "isPassive": true
+    },
+    {
+      "id": "xiao_hongshu_master",
+      "name": "📕 小红书style",
+      "description": "解锁全部暖色调主题",
+      "condition": {
+        "type": "customize_theme",
+        "theme": "warm"
+      },
+      "xpReward": 100,
+      "icon": "📕",
+      "rarity": "common",
+      "isPassive": true
+    }
+  ],
+  "achievementCategories": [
+    {
+      "id": "progress",
+      "name": "📈 进度成就",
+      "description": "完成学习进度的里程碑"
+    },
+    {
+      "id": "mastery",
+      "name": "🧠 掌握成就",
+      "description": "展现对知识的深刻理解"
+    },
+    {
+      "id": "discovery",
+      "name": "🔍 探索成就",
+      "description": "发现隐藏的内容和彩蛋"
+    },
+    {
+      "id": "persistence",
+      "name": "💪 坚持成就",
+      "description": "展现持之以恒的精神"
+    },
+    {
+      "id": "social",
+      "name": "👥 社交成就",
+      "description": "与NPC互动"
+    },
+    {
+      "id": "special",
+      "name": "🌟 特殊成就",
+      "description": "特别稀有的成就"
+    }
+  ],
+  "levels": [
+    {
+      "level": 1,
+      "xpRequired": 0,
+      "title": "社会学萌新",
+      "icon": "🌱",
+      "color": "#FFE0B2"
+    },
+    {
+      "level": 2,
+      "xpRequired": 100,
+      "title": "初窥门径",
+      "icon": "📚",
+      "color": "#FFCC80"
+    },
+    {
+      "level": 3,
+      "xpRequired": 300,
+      "title": "渐入佳境",
+      "icon": "💡",
+      "color": "#FFB74D"
+    },
+    {
+      "level": 4,
+      "xpRequired": 600,
+      "title": "小有所成",
+      "icon": "🎯",
+      "color": "#FFA726"
+    },
+    {
+      "level": 5,
+      "xpRequired": 1000,
+      "title": "理论入门",
+      "icon": "📖",
+      "color": "#FF9800"
+    },
+    {
+      "level": 6,
+      "xpRequired": 1500,
+      "title": "古典研习者",
+      "icon": "🏛️",
+      "color": "#FB8C00"
+    },
+    {
+      "level": 7,
+      "xpRequired": 2100,
+      "title": "方法论学徒",
+      "icon": "🔬",
+      "color": "#F57C00"
+    },
+    {
+      "level": 8,
+      "xpRequired": 2800,
+      "title": "当代理论探索者",
+      "icon": "🌟",
+      "color": "#EF6C00"
+    },
+    {
+      "level": 9,
+      "xpRequired": 3600,
+      "title": "社会学准研究生",
+      "icon": "🎓",
+      "color": "#E65100"
+    },
+    {
+      "level": 10,
+      "xpRequired": 5000,
+      "title": "北大社会学准录取生",
+      "icon": "🏆",
+      "color": "#BF360C"
+    }
+  ],
+  "badges": [
+    {
+      "id": "first_blood",
+      "name": "初战告捷",
+      "description": "答对第一道题",
+      "icon": "🩸",
+      "rarity": "common"
+    },
+    {
+      "id": "essay_master",
+      "name": "论述达人",
+      "description": "完成第一道论述题",
+      "icon": "✍️",
+      "rarity": "common"
+    },
+    {
+      "id": "theorist_friend",
+      "name": "大师之友",
+      "description": "与涂尔干、韦伯、马克思各对话3次",
+      "icon": "🤝",
+      "rarity": "rare"
+    },
+    {
+      "id": "night_owl_badge",
+      "name": "挑灯夜读",
+      "description": "深夜完成学习10次",
+      "icon": "🦉",
+      "rarity": "rare"
+    },
+    {
+      "id": "early_bird_badge",
+      "name": "闻鸡起舞",
+      "description": "清晨完成学习10次",
+      "icon": "🐦",
+      "rarity": "rare"
+    },
+    {
+      "id": "perfectionist",
+      "name": "完美主义者",
+      "description": "获得10次'完美一天'成就",
+      "icon": "💎",
+      "rarity": "epic"
+    },
+    {
+      "id": "legendary_journey",
+      "name": "传奇旅程",
+      "description": "完成100天学习",
+      "icon": "👑",
+      "rarity": "legendary"
+    }
+  ],
+  "metadata": {
+    "totalAchievements": 37,
+    "totalLevels": 10,
+    "totalBadges": 7,
+    "lastUpdated": "2025-01-15",
+    "version": "1.0"
+  }
+}

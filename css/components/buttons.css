@@ -1,0 +1,437 @@
+/**
+ * 北大社会学考研RPG - 按钮组件样式
+ * Buttons - 温暖治愈风格
+ */
+
+/* ============================================
+   1. 基础按钮
+   ============================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: var(--radius-full);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    outline: none;
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   2. 主要按钮
+   ============================================ */
+.btn-primary {
+    color: white;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent-peach));
+    border-color: transparent;
+    box-shadow: var(--shadow-card), 0 0 15px rgba(255, 159, 67, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-hover), var(--shadow-glow);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) scale(1);
+}
+
+/* ============================================
+   3. 次要按钮
+   ============================================ */
+.btn-secondary {
+    color: var(--color-text);
+    background: white;
+    border-color: var(--color-border);
+}
+
+.btn-secondary:hover {
+    background: var(--color-bg-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* ============================================
+   4. 轮廓按钮
+   ============================================ */
+.btn-outline {
+    color: var(--color-primary);
+    background: transparent;
+    border-color: var(--color-primary);
+}
+
+.btn-outline:hover {
+    color: white;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* ============================================
+   5. 文字按钮
+   ============================================ */
+.btn-text {
+    color: var(--color-primary);
+    background: transparent;
+    border-color: transparent;
+    border-radius: var(--radius-md);
+}
+
+.btn-text:hover {
+    background: rgba(255, 159, 67, 0.1);
+    color: var(--color-accent);
+}
+
+/* ============================================
+   6. 成功按钮
+   ============================================ */
+.btn-success {
+    color: white;
+    background: linear-gradient(135deg, var(--color-success), var(--color-success-light));
+    border-color: transparent;
+    box-shadow: var(--shadow-card);
+}
+
+.btn-success:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover), 0 0 20px rgba(76, 175, 80, 0.3);
+}
+
+/* ============================================
+   7. 危险按钮
+   ============================================ */
+.btn-danger {
+    color: white;
+    background: linear-gradient(135deg, var(--color-danger), #FF8A80);
+    border-color: transparent;
+}
+
+.btn-danger:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover), 0 0 20px rgba(231, 76, 60, 0.3);
+}
+
+/* ============================================
+   8. 警告按钮
+   ============================================ */
+.btn-warning {
+    color: var(--color-text);
+    background: linear-gradient(135deg, var(--color-warning), #FFD54F);
+    border-color: transparent;
+}
+
+.btn-warning:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ============================================
+   9. 信息按钮
+   ============================================ */
+.btn-info {
+    color: white;
+    background: linear-gradient(135deg, var(--color-info), #64B5F6);
+    border-color: transparent;
+}
+
+.btn-info:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ============================================
+   10. 尺寸变体
+   ============================================ */
+.btn-lg {
+    padding: 16px 36px;
+    font-size: var(--font-size-lg);
+    border-radius: var(--radius-xl);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius-md);
+}
+
+.btn-xs {
+    padding: 4px 10px;
+    font-size: var(--font-size-xs);
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   11. 块级按钮
+   ============================================ */
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+/* ============================================
+   12. 圆形按钮
+   ============================================ */
+.btn-circle {
+    padding: 14px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+}
+
+.btn-circle.btn-sm {
+    padding: 10px;
+}
+
+.btn-circle.btn-lg {
+    padding: 18px;
+}
+
+.btn-circle.btn-xs {
+    padding: 6px;
+}
+
+/* ============================================
+   13. 图标按钮
+   ============================================ */
+.btn-icon {
+    padding: 12px;
+}
+
+.btn-icon.btn-sm {
+    padding: 8px;
+}
+
+.btn-icon.btn-lg {
+    padding: 16px;
+}
+
+.btn-icon-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ============================================
+   14. 禁用状态
+   ============================================ */
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none !important;
+}
+
+/* ============================================
+   15. 加载状态
+   ============================================ */
+.btn-loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 50%;
+    left: 50%;
+    margin: -9px 0 0 -9px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   16. 渐变动画按钮
+   ============================================ */
+.btn-gradient {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent-peach), var(--color-primary));
+    background-size: 300% 100%;
+    color: white;
+    border: none;
+    animation: gradientShift 3s ease infinite;
+}
+
+.btn-gradient:hover {
+    background-position: 100% 0;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================
+   17. 发光按钮
+   ============================================ */
+.btn-glow {
+    color: var(--color-primary);
+    background: transparent;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 10px rgba(255, 159, 67, 0.2),
+                inset 0 0 10px rgba(255, 159, 67, 0.05);
+}
+
+.btn-glow:hover {
+    color: white;
+    background: var(--color-primary);
+    box-shadow: 0 0 30px rgba(255, 159, 67, 0.5);
+}
+
+/* ============================================
+   18. 玻璃态按钮
+   ============================================ */
+.btn-glass {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--color-border-light);
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* ============================================
+   19. 按钮组
+   ============================================ */
+.btn-group {
+    display: inline-flex;
+    gap: 0;
+}
+
+.btn-group .btn {
+    border-radius: 0;
+    margin-left: -2px;
+}
+
+.btn-group .btn:first-child {
+    border-radius: var(--radius-full) 0 0 var(--radius-full);
+    margin-left: 0;
+}
+
+.btn-group .btn:last-child {
+    border-radius: 0 var(--radius-full) var(--radius-full) 0;
+}
+
+/* ============================================
+   20. 特殊游戏按钮
+   ============================================ */
+
+/* 开始冒险按钮 */
+.btn-adventure {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent-coral));
+    color: white;
+    padding: 16px 40px;
+    font-size: var(--font-size-lg);
+}
+
+.btn-adventure::before {
+    content: '✨';
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-adventure:hover::before {
+    opacity: 1;
+    left: 15px;
+}
+
+.btn-adventure:hover {
+    padding-left: 45px;
+}
+
+/* 继续按钮 */
+.btn-continue {
+    background: var(--color-bg-light);
+    border: 2px dashed var(--color-border);
+    color: var(--color-text);
+}
+
+.btn-continue:hover {
+    border-style: solid;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(255, 159, 67, 0.1);
+}
+
+/* 选项卡按钮 */
+.btn-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    color: var(--color-text-muted);
+    padding: 12px 20px;
+}
+
+.btn-tab:hover {
+    color: var(--color-primary);
+    background: rgba(255, 159, 67, 0.05);
+}
+
+.btn-tab.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
+/* ============================================
+   21. 响应式
+   ============================================ */
+@media (max-width: 480px) {
+    .btn {
+        padding: 10px 20px;
+    }
+    
+    .btn-lg {
+        padding: 14px 28px;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        border-radius: var(--radius-md);
+        margin-left: 0;
+        margin-top: -2px;
+    }
+    
+    .btn-group .btn:first-child {
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+    
+    .btn-group .btn:last-child {
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+}

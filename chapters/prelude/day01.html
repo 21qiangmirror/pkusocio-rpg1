@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 01 - 走进社会学的大门 | 无知之海</title>
+    
+    <!-- 样式 -->
+    <link rel="stylesheet" href="../../css/base/variables.css">
+    <link rel="stylesheet" href="../../css/base/animations.css">
+    <link rel="stylesheet" href="../../css/components/buttons.css">
+    <link rel="stylesheet" href="../../css/components/progress.css">
+    <link rel="stylesheet" href="../../css/pages/chapter.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 章节页面专属样式 */
+        :root {
+            --chapter-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--chapter-gradient);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+        
+        /* 顶部进度条 */
+        .chapter-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+        
+        .chapter-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            transition: width 0.3s ease;
+        }
+        
+        /* 顶部导航 */
+        .chapter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .chapter-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.5rem;
+            color: #fbbf24;
+        }
+        
+        .chapter-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .day-badge {
+            background: var(--gradient-accent);
+            color: #1a1a1a;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .xp-badge {
+            background: rgba(99, 102, 241, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+        
+        /* 剧情区域 */
+        .story-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* 对话框 */
+        .dialog-box {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            animation: slideInUp 0.5s ease-out;
+        }
+        
+        .dialog-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .npc-portrait {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .npc-name {
+            font-weight: 600;
+            color: #fbbf24;
+        }
+        
+        .npc-title {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+        
+        .dialog-text {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        /* 知识卡片 */
+        .knowledge-card {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .knowledge-card h4 {
+            color: #818cf8;
+            margin: 0 0 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .knowledge-card p {
+            margin: 0;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        
+        /* 题目区域 */
+        .quiz-container {
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .quiz-question {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .quiz-option.selected {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .quiz-option.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--success-color);
+        }
+        
+        .quiz-option.wrong {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--error-color);
+        }
+        
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        /* 继续按钮 */
+        .continue-section {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .continue-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e1b4b;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border: none;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.4);
+        }
+        
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(251, 191, 36, 0.5);
+        }
+        
+        /* 底部导航 */
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 2rem;
+        }
+        
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: #f8fafc;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fbbf24;
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部进度条 -->
+    <div class="chapter-progress-bar">
+        <div class="chapter-progress-fill" id="progress-fill"></div>
+    </div>
+
+    <!-- 顶部导航 -->
+    <header class="chapter-header">
+        <div class="chapter-title">📖 Day 01</div>
+        <div class="chapter-info">
+            <span class="day-badge">觉醒期</span>
+            <span class="xp-badge">+50 XP</span>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="story-container">
+        
+        <!-- 旁白 -->
+        <div class="dialog-box narrative">
+            <div class="dialog-text">
+                <p>你从一片迷雾中醒来。</p>
+                <p>四周是灰蒙蒙的天空，远处隐约可见一座高耸入云的尖塔——那是社会学深渊，据说那里汇聚着所有关于社会的真知。</p>
+                <p>一个苍老的声音在你耳边响起：</p>
+            </div>
+        </div>
+
+        <!-- NPC对话 -->
+        <div class="dialog-box">
+            <div class="dialog-header">
+                <div class="npc-portrait">👴</div>
+                <div>
+                    <div class="npc-name">孔德老人</div>
+                    <div class="npc-title">实证主义的奠基人</div>
+                </div>
+            </div>
+            <div class="dialog-text">
+                <p>「欢迎来到无知之海，年轻的求知者。」</p>
+                <p>「我叫奥古斯特·孔德，曾经在这片土地上探索了数十年。」</p>
+                <p>「在正式开始旅程之前，让我先告诉你——社会学究竟是什么。」</p>
+            </div>
+        </div>
+
+        <!-- 知识卡片 -->
+        <div class="knowledge-card">
+            <h4>📚 社会学的定义</h4>
+            <p><strong>社会学（Sociology）</strong>是研究人类社会（包括社会结构、社会关系、社会行为）的一门学科。它试图用科学的方法来理解、解释和预测社会现象。</p>
+        </div>
+
+        <!-- NPC继续对话 -->
+        <div class="dialog-box">
+            <div class="dialog-header">
+                <div class="npc-portrait">👴</div>
+                <div>
+                    <div class="npc-name">孔德老人</div>
+                    <div class="npc-title">实证主义的奠基人</div>
+                </div>
+            </div>
+            <div class="dialog-text">
+                <p>「社会学诞生于19世纪的欧洲，那是一个风云变幻的时代——工业革命、城市化、启蒙运动……人们迫切需要理解这个正在剧变的世界。」</p>
+                <p>「我是第一个提出'社会学'这个名称的人，并主张用实证主义的方法来研究社会。」</p>
+            </div>
+        </div>
+
+        <!-- 知识卡片2 -->
+        <div class="knowledge-card">
+            <h4>🔑 核心概念：社会学想象力</h4>
+            <p><strong>社会学想象力</strong>是美国社会学家 C. 赖特·米尔斯提出的概念，指的是将个人处境与社会结构相联系的能力。它帮助我们理解：</p>
+            <ul style="margin: 0.75rem 0 0; padding-left: 1.5rem; color: #cbd5e1;">
+                <li>个人的困扰如何反映社会的问题</li>
+                <li>个人的选择如何受到社会结构的影响</li>
+                <li>微观日常与宏观历史如何相互关联</li>
+            </ul>
+        </div>
+
+        <!-- 题目测试 -->
+        <div class="quiz-container">
+            <div class="quiz-question">
+                🎯 <strong>知识检测：</strong>社会学诞生于哪个世纪？
+            </div>
+            <div class="quiz-options" id="quiz-options">
+                <div class="quiz-option" data-correct="false" onclick="selectOption(this)">
+                    <span class="option-letter">A</span>
+                    <span>18世纪（启蒙时代）</span>
+                </div>
+                <div class="quiz-option" data-correct="false" onclick="selectOption(this)">
+                    <span class="option-letter">B</span>
+                    <span>19世纪（工业革命时期）</span>
+                </div>
+                <div class="quiz-option" data-correct="false" onclick="selectOption(this)">
+                    <span class="option-letter">C</span>
+                    <span>20世纪（现代时期）</span>
+                </div>
+                <div class="quiz-option" data-correct="false" onclick="selectOption(this)">
+                    <span class="option-letter">D</span>
+                    <span>17世纪（科学革命时期）</span>
+                </div>
+            </div>
+            <div class="quiz-result" id="quiz-result" style="display: none; margin-top: 1rem;"></div>
+        </div>
+
+        <!-- NPC反馈 -->
+        <div class="dialog-box" id="feedback-dialog" style="display: none;">
+            <div class="dialog-header">
+                <div class="npc-portrait">👴</div>
+                <div>
+                    <div class="npc-name">孔德老人</div>
+                    <div class="npc-title">实证主义的奠基人</div>
+                </div>
+            </div>
+            <div class="dialog-text" id="feedback-text">
+            </div>
+        </div>
+
+        <!-- 继续按钮 -->
+        <div class="continue-section" id="continue-section" style="display: none;">
+            <button class="continue-btn" onclick="goToNext()">
+                <span>继续探索</span>
+                <span>→</span>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- 底部导航 -->
+    <nav class="chapter-nav">
+        <button class="nav-btn" disabled>← 上一章</button>
+        <button class="nav-btn" onclick="goToMap()">📍 世界地图</button>
+        <button class="nav-btn" onclick="goToNext()">下一章 →</button>
+    </nav>
+
+    <script>
+        // 当前进度
+        let currentProgress = 0;
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            // 更新进度条
+            updateProgress(20);
+        });
+        
+        // 选择选项
+        function selectOption(element) {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            // 检查答案
+            setTimeout(() => {
+                const isCorrect = element.dataset.correct === 'true';
+                
+                // 标记正确/错误
+                element.classList.add(isCorrect ? 'correct' : 'wrong');
+                
+                // 如果选错，显示正确答案
+                if (!isCorrect) {
+                    options.forEach(opt => {
+                        if (opt.dataset.correct === 'true') {
+                            opt.classList.add('correct');
+                        }
+                    });
+                }
+                
+                // 显示结果
+                const resultDiv = document.getElementById('quiz-result');
+                resultDiv.innerHTML = isCorrect 
+                    ? '<span style="color: #10b981;">✓ 回答正确！你真是个有天赋的学者！</span>'
+                    : '<span style="color: #ef4444;">✗ 回答错误。正确答案是B：19世纪（工业革命时期）。</span>';
+                resultDiv.style.display = 'block';
+                
+                // 通知游戏引擎
+                if (window.gameEngine) {
+                    window.gameEngine.answerQuestion(isCorrect);
+                }
+                
+                // 显示反馈
+                const feedbackDialog = document.getElementById('feedback-dialog');
+                const feedbackText = document.getElementById('feedback-text');
+                feedbackDialog.style.display = 'block';
+                
+                if (isCorrect) {
+                    feedbackText.innerHTML = '<p>「很好！你已经迈出了成为社会学者的第一步。」</p><p>「记住，社会学的核心在于用科学的方法理解社会。希望你能在接下来的旅程中保持这份好奇心。」</p>';
+                } else {
+                    feedbackText.innerHTML = '<p>「没关系，年轻人。社会学的历史确实容易被混淆。」</p><p>「记住，社会学诞生于19世纪，那是工业革命如火如荼的时代，社会正在经历前所未有的变革——这正是社会学产生的土壤。」</p>';
+                }
+                
+                // 显示继续按钮
+                document.getElementById('continue-section').style.display = 'block';
+                updateProgress(100);
+            }, 300);
+        }
+        
+        // 更新进度条
+        function updateProgress(percent) {
+            currentProgress = percent;
+            document.getElementById('progress-fill').style.width = percent + '%';
+        }
+        
+        // 下一章
+        function goToNext() {
+            // 完成章节
+            if (window.gameEngine) {
+                window.gameEngine.completeChapter('prelude-day01', currentProgress);
+            }
+            // 跳转到下一章
+            window.location.href = 'day02.html';
+        }
+        
+        // 返回地图
+        function goToMap() {
+            window.location.href = '../../map.html';
+        }
+    </script>
+</body>
+</html>

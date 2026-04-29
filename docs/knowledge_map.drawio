@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1554" dy="946" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    
+    
+    <mxCell id="title" value="北京大学社会学考研 - 知识图谱" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="600" y="20" width="400" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="subtitle" value="100天闯关体系与核心知识点映射" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#666666;" vertex="1" parent="1">
+      <mxGeometry x="600" y="55" width="400" height="25" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="center" value="社会学&amp;#xa;深渊" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4c1d95;strokeColor=#7c3aed;strokeWidth=3;fontSize=16;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="700" y="550" width="200" height="100" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="theory" value="社会学理论&amp;#xa;Day 1-60" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6366f1;strokeColor=#4f46e5;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="200" y="250" width="160" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="methods" value="社会研究方法&amp;#xa;Day 61-70" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#10b981;strokeColor=#059669;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="200" y="500" width="160" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="statistics" value="社会统计学&amp;#xa;Day 71-80" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f59e0b;strokeColor=#d97706;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="200" y="750" width="160" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="branches" value="分支学科&amp;#xa;Day 81-90" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ef4444;strokeColor=#dc2626;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="1150" y="400" width="160" height="80" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="classical" value="古典理论&amp;#xa;Day 11-30" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#818cf8;strokeColor=#6366f1;strokeWidth=1;fontSize=12;fontColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="50" y="100" width="130" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="modern" value="现代理论&amp;#xa;Day 31-50" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#818cf8;strokeColor=#6366f1;strokeWidth=1;fontSize=12;fontColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="50" y="200" width="130" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="critical" value="批判理论&amp;#xa;Day 51-60" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#818cf8;strokeColor=#6366f1;strokeWidth=1;fontSize=12;fontColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="50" y="300" width="130" height="70" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="durkheim" value="涂尔干&amp;#xa;社会事实论&amp;#xa;社会团结" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="10" y="20" width="110" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="weber" value="韦伯&amp;#xa;理解社会学&amp;#xa;社会行动" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="10" y="90" width="110" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="marx" value="马克思&amp;#xa;历史唯物主义&amp;#xa;阶级理论" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="130" y="20" width="110" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="simmel" value="齐美尔&amp;#xa;形式社会学&amp;#xa;文化社会学" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="130" y="90" width="110" height="60" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="parsons" value="帕森斯&amp;#xa;AGIL模型&amp;#xa;结构功能主义" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="10" y="120" width="110" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="merton" value="默顿&amp;#xa;中层理论&amp;#xa;显功能/潜功能" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="10" y="190" width="110" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="mead" value="米德&amp;#xa;符号互动论&amp;#xa;主我/客我" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="130" y="120" width="110" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="goffman" value="戈夫曼&amp;#xa;拟剧论&amp;#xa;印象管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="130" y="190" width="110" height="60" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="adorno" value="法兰克福学派&amp;#xa;批判理论" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="10" y="220" width="110" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="habermas" value="哈贝马斯&amp;#xa;交往行动&amp;#xa;公共领域" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="130" y="220" width="110" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="foucault" value="福柯&amp;#xa;权力/知识&amp;#xa;规训" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="10" y="290" width="110" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="bourdieu" value="布迪厄&amp;#xa;文化资本&amp;#xa;场域理论" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c4b5fd;strokeColor=#a78bfa;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="130" y="290" width="110" height="60" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="qualitative" value="定性研究&amp;#xa;访谈/观察" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6ee7b7;strokeColor=#34d399;strokeWidth=1;fontSize=11;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="30" y="450" width="120" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="quantitative" value="定量研究&amp;#xa;问卷/实验" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6ee7b7;strokeColor=#34d399;strokeWidth=1;fontSize=11;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="30" y="520" width="120" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="methodology" value="方法论&amp;#xa;科学环" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6ee7b7;strokeColor=#34d399;strokeWidth=1;fontSize=11;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="30" y="590" width="120" height="60" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="descriptive" value="描述统计&amp;#xa;集中/离散" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fcd34d;strokeColor=#fbbf24;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="30" y="700" width="110" height="55" as="geometry" />
+    </mxCell>
+    <mxCell id="inferential" value="推论统计&amp;#xa;检验/估计" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fcd34d;strokeColor=#fbbf24;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="30" y="765" width="110" height="55" as="geometry" />
+    </mxCell>
+    <mxCell id="regression" value="回归分析&amp;#xa;相关/多元" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fcd34d;strokeColor=#fbbf24;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="150" y="700" width="110" height="55" as="geometry" />
+    </mxCell>
+    <mxCell id="variance" value="方差分析&amp;#xa;F检验" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fcd34d;strokeColor=#fbbf24;strokeWidth=1;fontSize=10;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="150" y="765" width="110" height="55" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="urban" value="城市社会学" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fca5a5;strokeColor=#f87171;strokeWidth=1;fontSize=11;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="1150" y="320" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="rural" value="农村社会学" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fca5a5;strokeColor=#f87171;strokeWidth=1;fontSize=11;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="1150" y="380" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="population" value="人口社会学" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fca5a5;strokeColor=#f87171;strokeWidth=1;fontSize=11;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="1270" y="320" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="labor" value="劳动社会学" style="rounded=1;whiteSpace=wrap;html=1;startSize=8;fillColor=#fca5a5;strokeColor=#f87171;strokeWidth=1;fontSize=11;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="1270" y="380" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="social-psych" value="社会心理学" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fca5a5;strokeColor=#f87171;strokeWidth=1;fontSize=11;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="1150" y="440" width="110" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="family" value="家庭社会学" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fca5a5;strokeColor=#f87171;strokeWidth=1;fontSize=11;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="1270" y="440" width="110" height="50" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="prelude" value="觉醒期&amp;#xa;Day 1-10&amp;#xa;社会学概论" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fbbf24;strokeColor=#f59e0b;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="400" y="150" width="130" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="exam" value="真题冲刺&amp;#xa;Day 91-100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fbbf24;strokeColor=#f59e0b;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#1a1a1a;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="550" width="130" height="70" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="link1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6366f1;entryX=1;entryY=0.5;exitX=0;exitY=0.5;" edge="1" parent="1" source="theory" target="center">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#10b981;entryX=1;entryY=0.5;exitX=0;exitY=0.5;" edge="1" parent="1" source="methods" target="center">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#f59e0b;entryX=1;entryY=0.5;exitX=0;exitY=0.5;" edge="1" parent="1" source="statistics" target="center">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#ef4444;entryX=0;entryY=0.5;exitX=1;exitY=0.5;" edge="1" parent="1" source="center" target="branches">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="link5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#818cf8;dashed=1;" edge="1" parent="1" source="theory" target="classical">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#818cf8;dashed=1;" edge="1" parent="1" source="theory" target="modern">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#818cf8;dashed=1;" edge="1" parent="1" source="theory" target="critical">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="link8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="classical" target="durkheim">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="classical" target="weber">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="classical" target="marx">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="classical" target="simmel">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="link12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="modern" target="parsons">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="modern" target="merton">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="modern" target="mead">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="modern" target="goffman">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="link16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="critical" target="adorno">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="critical" target="habermas">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="critical" target="foucault">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#c4b5fd;dashed=1;" edge="1" parent="1" source="critical" target="bourdieu">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="link20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#6ee7b7;dashed=1;" edge="1" parent="1" source="methods" target="qualitative">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#6ee7b7;dashed=1;" edge="1" parent="1" source="methods" target="quantitative">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#6ee7b7;dashed=1;" edge="1" parent="1" source="methods" target="methodology">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="link23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fcd34d;dashed=1;" edge="1" parent="1" source="statistics" target="descriptive">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fcd34d;dashed=1;" edge="1" parent="1" source="statistics" target="inferential">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fcd34d;dashed=1;" edge="1" parent="1" source="statistics" target="regression">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fcd34d;dashed=1;" edge="1" parent="1" source="statistics" target="variance">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="link27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fca5a5;dashed=1;" edge="1" parent="1" source="branches" target="urban">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fca5a5;dashed=1;" edge="1" parent="1" source="branches" target="rural">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fca5a5;dashed=1;" edge="1" parent="1" source="branches" target="population">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fca5a5;dashed=1;" edge="1" parent="1" source="branches" target="labor">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fca5a5;dashed=1;" edge="1" parent="1" source="branches" target="social-psych">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#fca5a5;dashed=1;" edge="1" parent="1" source="branches" target="family">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    
+    <mxCell id="link33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#fbbf24;entryX=0;entryY=0.5;exitX=1;exitY=0.5;" edge="1" parent="1" source="prelude" target="theory">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="link34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#fbbf24;entryX=1;entryY=0.5;exitX=0;exitY=0.5;" edge="1" parent="1" source="exam" target="branches">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel>

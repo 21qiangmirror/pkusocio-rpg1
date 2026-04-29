@@ -1,0 +1,791 @@
+/**
+ * 北大社会学考研RPG - 章节通用样式
+ * Chapter Styles - 温暖治愈风格
+ */
+
+/* ============================================
+   1. 章节封面样式 (Chapter Cover)
+   ============================================ */
+
+.chapter-cover {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, 
+        var(--color-bg-dark) 0%, 
+        var(--color-bg-light) 50%, 
+        var(--color-bg-medium) 100%);
+    overflow: hidden;
+}
+
+/* 封面背景装饰 */
+.chapter-cover::before {
+    content: '✨🌟⭐✨🌟⭐✨';
+    position: absolute;
+    top: 10%;
+    font-size: 2rem;
+    letter-spacing: 20px;
+    opacity: 0.15;
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(0.9); }
+    50% { opacity: 0.25; transform: scale(1.1); }
+}
+
+.chapter-cover-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    padding: 48px;
+}
+
+.chapter-number {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin-bottom: 16px;
+    opacity: 0.15;
+    transform: scale(2);
+    letter-spacing: 0.1em;
+}
+
+.chapter-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    color: var(--color-text-heading);
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(255, 159, 67, 0.2);
+    animation: fadeInUp 0.6s ease 0.2s backwards;
+}
+
+.chapter-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-light);
+    margin-bottom: 32px;
+    line-height: 1.8;
+    animation: fadeInUp 0.6s ease 0.4s backwards;
+}
+
+.chapter-divider {
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    margin: 0 auto 32px;
+    border-radius: var(--radius-full);
+    animation: fadeIn 0.6s ease 0.6s backwards;
+}
+
+.chapter-meta {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 48px;
+    animation: fadeInUp 0.6s ease 0.8s backwards;
+}
+
+.chapter-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.chapter-meta-icon {
+    font-size: 1.2rem;
+}
+
+/* 开始按钮 */
+.chapter-start-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent-peach));
+    color: white;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: var(--shadow-card), var(--shadow-glow);
+    animation: fadeInUp 0.6s ease 1s backwards;
+}
+
+.chapter-start-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: var(--shadow-hover), 0 0 40px rgba(255, 159, 67, 0.5);
+}
+
+.chapter-start-btn:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.chapter-start-icon {
+    transition: transform 0.3s ease;
+}
+
+.chapter-start-btn:hover .chapter-start-icon {
+    transform: translateX(6px);
+}
+
+/* 封面浮动装饰 */
+.chapter-floating-decor {
+    position: absolute;
+    pointer-events: none;
+}
+
+.chapter-floating-decor.left {
+    top: 25%;
+    left: 8%;
+    font-size: 3rem;
+    animation: floatLeft 6s ease-in-out infinite;
+}
+
+.chapter-floating-decor.right {
+    bottom: 20%;
+    right: 10%;
+    font-size: 2.5rem;
+    animation: floatRight 8s ease-in-out infinite reverse;
+}
+
+@keyframes floatLeft {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes floatRight {
+    0%, 100% { transform: translateY(0) rotate(5deg); }
+    50% { transform: translateY(-25px) rotate(-5deg); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ============================================
+   2. 章节导航样式 (Chapter Navigation)
+   ============================================ */
+
+.chapter-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--color-border);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+.chapter-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.chapter-nav-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--color-bg-light);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chapter-nav-back:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: translateX(-4px);
+}
+
+.chapter-nav-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-heading);
+}
+
+.chapter-nav-progress {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.chapter-nav-step {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+}
+
+.chapter-nav-step-current {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.chapter-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chapter-nav-map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--color-bg-light);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chapter-nav-map:hover {
+    background: var(--color-bg-medium);
+    border-color: var(--color-primary);
+}
+
+/* ============================================
+   3. 章节内容区域
+   ============================================ */
+
+.chapter-main {
+    padding-top: 80px;
+    min-height: 100vh;
+}
+
+.chapter-scene {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.scene-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-heading);
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.scene-title-icon {
+    color: var(--color-primary);
+}
+
+.scene-content {
+    line-height: 1.9;
+    color: var(--color-text-light);
+}
+
+.scene-content p {
+    margin-bottom: 16px;
+}
+
+.scene-content strong {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* 知识点标签 */
+.knowledge-point {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255, 159, 67, 0.15);
+    border: 1px solid rgba(255, 159, 67, 0.4);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    color: var(--color-primary);
+}
+
+/* 名词解释 */
+.definition-box {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 232, 214, 0.95));
+    border-left: 5px solid var(--color-primary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+}
+
+.definition-term {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.definition-desc {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    line-height: 1.8;
+}
+
+/* 引用框 */
+.quote-box {
+    position: relative;
+    padding: 24px 24px 24px 48px;
+    margin: 24px 0;
+    background: rgba(255, 159, 67, 0.08);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+}
+
+.quote-box::before {
+    content: '💬';
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    font-size: 1.5rem;
+}
+
+.quote-text {
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    color: var(--color-text);
+    line-height: 1.8;
+}
+
+.quote-author {
+    margin-top: 12px;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-align: right;
+}
+
+/* ============================================
+   4. 锁卡效果样式 (Locked Cards)
+   ============================================ */
+
+.locked-card {
+    position: relative;
+    pointer-events: none;
+}
+
+.lock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 248, 240, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: inherit;
+    z-index: 2;
+}
+
+.lock-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--color-bg-light);
+    border: 2px solid var(--color-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.lock-condition {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+    max-width: 200px;
+}
+
+.locked-content {
+    filter: blur(4px);
+    opacity: 0.4;
+    user-select: none;
+}
+
+@keyframes unlockPulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 159, 67, 0.7); }
+    70% { box-shadow: 0 0 0 25px rgba(255, 159, 67, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 159, 67, 0); }
+}
+
+.unlock-animation {
+    animation: unlockPulse 0.6s ease-out;
+}
+
+/* ============================================
+   5. 进度展示样式 (Progress Display)
+   ============================================ */
+
+.chapter-progress-panel {
+    background: var(--color-bg-card);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.progress-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.progress-panel-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-heading);
+}
+
+/* 任务列表 */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(255, 159, 67, 0.05);
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.task-item:hover {
+    background: rgba(255, 159, 67, 0.1);
+}
+
+.task-status {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+
+.task-status.pending {
+    background: var(--color-bg-light);
+    border: 2px solid var(--color-border);
+}
+
+.task-status.completed {
+    background: var(--color-success);
+    color: white;
+}
+
+.task-status.current {
+    background: var(--color-primary);
+    color: white;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-title {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+}
+
+.task-desc {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.task-reward {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--font-size-xs);
+    color: var(--color-primary);
+}
+
+/* 章节完成徽章 */
+.chapter-complete-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, var(--color-success), var(--color-success-light));
+    color: white;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    border-radius: var(--radius-full);
+}
+
+/* ============================================
+   6. 章节过渡效果
+   ============================================ */
+
+.scene-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-bg-dark);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.scene-transition.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.transition-content {
+    text-align: center;
+}
+
+.transition-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-3xl);
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+/* ============================================
+   7. 章节选择器
+   ============================================ */
+
+.chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 24px;
+}
+
+.chapter-card {
+    position: relative;
+    background: linear-gradient(145deg, white, var(--color-bg-light));
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chapter-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-hover), var(--shadow-glow);
+}
+
+.chapter-card.locked {
+    filter: grayscale(0.5);
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+.chapter-card.locked:hover {
+    transform: none;
+    border-color: var(--color-border);
+    box-shadow: none;
+}
+
+.chapter-card-cover {
+    height: 150px;
+    background: linear-gradient(135deg, var(--color-bg-light), var(--color-bg-medium));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.chapter-card-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(255,255,255,0.6) 100%);
+}
+
+.chapter-card-cover-icon {
+    font-size: 4rem;
+    opacity: 0.35;
+}
+
+.chapter-card-content {
+    padding: 20px;
+}
+
+.chapter-card-number {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    color: var(--color-primary);
+    background: rgba(255, 159, 67, 0.15);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    margin-bottom: 10px;
+}
+
+.chapter-card-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-heading);
+    margin-bottom: 8px;
+}
+
+.chapter-card-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.chapter-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 2px dashed var(--color-divider);
+}
+
+.chapter-card-progress {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.chapter-card-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-xs);
+    color: var(--color-success);
+}
+
+.chapter-card-status.locked {
+    color: var(--color-text-muted);
+}
+
+/* 章节完成标记 */
+.chapter-complete-check {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background: var(--color-success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-card);
+}
+
+/* ============================================
+   8. 响应式
+   ============================================ */
+
+@media (max-width: 768px) {
+    .chapter-cover-content {
+        padding: 24px;
+    }
+    
+    .chapter-number {
+        font-size: 3.5rem;
+    }
+    
+    .chapter-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .chapter-subtitle {
+        font-size: var(--font-size-base);
+    }
+    
+    .chapter-meta {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .chapter-nav {
+        padding: 0 16px;
+    }
+    
+    .chapter-nav-title {
+        display: none;
+    }
+    
+    .chapter-grid {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+    
+    .scene-title {
+        font-size: var(--font-size-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .chapter-start-btn {
+        padding: 12px 28px;
+        font-size: var(--font-size-base);
+    }
+    
+    .chapter-card-cover {
+        height: 110px;
+    }
+}

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无知之海 - 北大社会学考研剧情RPG</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="游戏化学习北京大学社会学考研，100天闯关体系，剧情RPG学习网站">
+    <meta name="keywords" content="北京大学社会学,考研,社会学,学习网站,RPG,游戏化学习">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="无知之海 - 北大社会学考研RPG">
+    <meta property="og:description" content="边玩剧情边学习，100天通关北大社会学考研">
+    <meta property="og:type" content="website">
+    
+    <!-- 样式 -->
+    <link rel="stylesheet" href="css/base/variables.css">
+    <link rel="stylesheet" href="css/base/animations.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/progress.css">
+    <link rel="stylesheet" href="css/pages/home.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 首页专属样式 */
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #f59e0b;
+            --bg-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+            --text-light: #f8fafc;
+            --text-muted: #cbd5e1;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text-light);
+        }
+        
+        /* 加载界面 */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-gradient);
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+        
+        #loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-content {
+            text-align: center;
+        }
+        
+        .game-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(251, 191, 36, 0.3);
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .game-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin: 0.5rem 0 2rem;
+        }
+        
+        .loading-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 auto 1rem;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        .loading-tip {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            animation: tipFade 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes tipFade {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        /* 游戏容器 */
+        #game-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* 导航栏 */
+        #game-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.5rem;
+            color: #fbbf24;
+        }
+        
+        .nav-center {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* 主内容区 */
+        #main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        /* 英雄区域 */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .hero-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 3.5rem;
+            margin: 0 0 1rem;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+        
+        /* 开始按钮 */
+        .start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e1b4b;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border: none;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.4);
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(251, 191, 36, 0.5);
+        }
+        
+        /* 特性卡片 */
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding: 0 1rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+        }
+        
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* 章节预览 */
+        .chapters-preview {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+        
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .chapter-item {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .chapter-item:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+            transform: scale(1.02);
+        }
+        
+        .chapter-volume {
+            font-size: 0.8rem;
+            color: #fbbf24;
+            margin-bottom: 0.25rem;
+        }
+        
+        .chapter-name {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+        }
+        
+        .chapter-days {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载界面 -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <h1 class="game-title">无知之海</h1>
+            <p class="game-subtitle">北大社会学考研剧情RPG</p>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loading-progress"></div>
+            </div>
+            <p class="loading-tip" id="loading-tip">正在穿越社会学的迷雾...</p>
+        </div>
+    </div>
+
+    <!-- 游戏主界面 -->
+    <div id="game-container" class="hidden">
+        <!-- 导航栏 -->
+        <nav id="game-nav">
+            <div class="nav-left">
+                <span class="nav-title">无知之海</span>
+            </div>
+            <div class="nav-center">
+                <button class="nav-btn" data-page="home">首页</button>
+                <button class="nav-btn" data-page="map">地图</button>
+                <button class="nav-btn" data-page="profile">角色</button>
+                <button class="nav-btn" data-page="achievements">成就</button>
+            </div>
+            <div class="nav-right">
+                <button class="nav-btn" id="settings-btn">⚙️</button>
+            </div>
+        </nav>
+
+        <!-- 主内容区 -->
+        <main id="main-content">
+            <!-- 英雄区域 -->
+            <section class="hero-section">
+                <h1 class="hero-title">踏入无知之海</h1>
+                <p class="hero-description">
+                    在这里，你将化身为社会学徒，穿越古典理论的废墟、<br>
+                    踏过现代理论的迷宫、在方法论的田野中寻找真相的碎片，<br>
+                    最终攀登社会学深渊的最高峰。
+                </p>
+                <button class="start-btn" id="start-btn">
+                    <span>🚀</span>
+                    <span>开始100天试炼</span>
+                </button>
+            </section>
+
+            <!-- 特性区域 -->
+            <section class="features-section">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">完整考点覆盖</h3>
+                    <p class="feature-desc">完全适配北京大学社会学考研全套考点，理论+方法+分支全覆盖</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3 class="feature-title">剧情RPG体验</h3>
+                    <p class="feature-desc">沉浸式世界观设定，角色扮演+主线剧情，边玩边学</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3 class="feature-title">解谜闯关体系</h3>
+                    <p class="feature-desc">知识连线、拼图解谜、情境模拟等多种趣味题型</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">进度可视化</h3>
+                    <p class="feature-desc">100天循序渐进闯关，章节锁卡+成就系统</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3 class="feature-title">自动存档</h3>
+                    <p class="feature-desc">浏览器本地存储，随时继续学习进度</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">多端适配</h3>
+                    <p class="feature-desc">支持桌面和移动端，GitHub Pages一键部署</p>
+                </div>
+            </section>
+
+            <!-- 章节预览 -->
+            <section class="chapters-preview">
+                <h2 class="section-title">📖 章节一览</h2>
+                <div class="chapter-grid">
+                    <div class="chapter-item">
+                        <div class="chapter-volume">序章</div>
+                        <p class="chapter-name">觉醒期</p>
+                        <p class="chapter-days">Day 1-10</p>
+                    </div>
+                    <div class="chapter-item">
+                        <div class="chapter-volume">第一卷</div>
+                        <p class="chapter-name">古典理论的回响</p>
+                        <p class="chapter-days">Day 11-30</p>
+                    </div>
+                    <div class="chapter-item">
+                        <div class="chapter-volume">第二卷</div>
+                        <p class="chapter-name">现代转型</p>
+                        <p class="chapter-days">Day 31-50</p>
+                    </div>
+                    <div class="chapter-item">
+                        <div class="chapter-volume">第三卷</div>
+                        <p class="chapter-name">批判与反思</p>
+                        <p class="chapter-days">Day 51-60</p>
+                    </div>
+                    <div class="chapter-item">
+                        <div class="chapter-volume">第四卷</div>
+                        <p class="chapter-name">研究方法</p>
+                        <p class="chapter-days">Day 61-70</p>
+                    </div>
+                    <div class="chapter-item">
+                        <div class="chapter-volume">第五卷</div>
+                        <p class="chapter-name">统计分析</p>
+                        <p class="chapter-days">Day 71-80</p>
+                    </div>
+                    <div class="chapter-item">
+                        <div class="chapter-volume">第六卷</div>
+                        <p class="chapter-name">分支学科</p>
+                        <p class="chapter-days">Day 81-90</p>
+                    </div>
+                    <div class="chapter-item">
+                        <div class="chapter-volume">终章</div>
+                        <p class="chapter-name">真题冲刺</p>
+                        <p class="chapter-days">Day 91-100</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer>
+            <p>© 2024 无知之海 - 北大社会学考研RPG学习网站</p>
+            <p>基于北京大学社会学考研大纲设计 | 游戏化学习平台</p>
+        </footer>
+    </div>
+
+    <!-- 模态框容器 -->
+    <div id="modal-container"></div>
+
+    <!-- 音效控制 -->
+    <div id="sound-controller" style="position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 1000;">
+        <button id="bgm-toggle" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: white; cursor: pointer; font-size: 18px;">🎵</button>
+        <button id="sfx-toggle" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(0,0,0,0.5); color: white; cursor: pointer; font-size: 18px;">🔊</button>
+    </div>
+
+    <!-- 游戏脚本 -->
+    <script src="js/core/game-engine.js" type="module"></script>
+    <script>
+        // 加载进度模拟
+        const loadingTips = [
+            '正在穿越社会学的迷雾...',
+            '加载社会学知识碎片...',
+            '解锁社会学想象力...',
+            '初始化游戏系统...',
+            '即将开启你的学术之旅...'
+        ];
+        
+        let tipIndex = 0;
+        const loadingProgress = document.getElementById('loading-progress');
+        const loadingTip = document.getElementById('loading-tip');
+        const loadingScreen = document.getElementById('loading-screen');
+        const gameContainer = document.getElementById('game-container');
+        
+        // 模拟加载进度
+        function simulateLoading() {
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15 + 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        gameContainer.classList.remove('hidden');
+                    }, 500);
+                }
+                loadingProgress.style.width = progress + '%';
+                
+                // 更新提示文字
+                const newTipIndex = Math.floor(progress / 20);
+                if (newTipIndex !== tipIndex && newTipIndex < loadingTips.length) {
+                    tipIndex = newTipIndex;
+                    loadingTip.textContent = loadingTips[tipIndex];
+                }
+            }, 200);
+        }
+        
+        // 页面加载完成后开始动画
+        window.addEventListener('load', () => {
+            setTimeout(simulateLoading, 500);
+        });
+        
+        // 开始按钮点击
+        document.getElementById('start-btn').addEventListener('click', () => {
+            window.location.href = 'chapters/prelude/day01.html';
+        });
+        
+        // 导航按钮
+        document.querySelectorAll('.nav-btn[data-page]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = btn.dataset.page;
+                if (page === 'home') {
+                    window.location.href = 'index.html';
+                }
+                // 其他页面后续实现
+            });
+        });
+    </script>
+</body>
+</html>

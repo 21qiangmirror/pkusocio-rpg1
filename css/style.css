@@ -1,0 +1,812 @@
+/**
+ * 北大社会学考研RPG - 主样式文件
+ * PKU Sociology Exam RPG - Main Stylesheet
+ * 
+ * 主题：温暖治愈卡通风格 + 游戏化 + 轻松有趣
+ * 配色：暖橙/琥珀色 + 米白背景 + 可爱emoji
+ */
+
+/* ============================================
+   1. CSS变量定义 (CSS Custom Properties)
+   ============================================ */
+:root {
+    /* 主色调 - 暖橙/琥珀色系 */
+    --color-primary: #FF9F43;
+    --color-secondary: #F8B500;
+    --color-accent: #FF6B6B;
+    --color-accent-pink: #FF85A2;
+    --color-accent-peach: #FFBE76;
+    
+    /* 功能色 */
+    --color-success: #4CAF50;
+    --color-success-light: #81C784;
+    --color-warning: #FFB74D;
+    --color-danger: #E74C3C;
+    --color-info: #42A5F5;
+    
+    /* 背景色 - 暖白/米黄系 */
+    --color-bg-dark: #FFF8F0;
+    --color-bg-light: #FFE8D6;
+    --color-bg-medium: #FFDAB3;
+    --color-bg-card: rgba(255, 255, 255, 0.95);
+    --color-bg-overlay: rgba(255, 248, 240, 0.98);
+    
+    /* 文字颜色 */
+    --color-text: #2D3436;
+    --color-text-light: #5D4E37;
+    --color-text-muted: #B8A589;
+    --color-text-accent: #FF9F43;
+    --color-text-heading: #3D3425;
+    --color-text-white: #FFFFFF;
+    
+    /* 边框与分割线 */
+    --color-border: rgba(255, 159, 67, 0.4);
+    --color-border-light: rgba(255, 229, 214, 0.8);
+    --color-divider: rgba(255, 159, 67, 0.25);
+    
+    /* 阴影 */
+    --shadow-glow: 0 0 20px rgba(255, 159, 67, 0.4);
+    --shadow-card: 0 4px 20px rgba(139, 115, 85, 0.15);
+    --shadow-hover: 0 8px 30px rgba(255, 159, 67, 0.3);
+    --transition-default: all 0.3s ease;
+    
+    /* 字体栈 */
+    --font-primary: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    --font-heading: 'Georgia', 'Songti SC', 'SimSun', serif;
+    --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    
+    /* 字号系统 */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    
+    /* 圆角 */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+}
+
+/* ============================================
+   2. 基础重置样式
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-light) 100%);
+    color: var(--color-text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 背景装饰 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(255, 159, 67, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 25%),
+        radial-gradient(circle at 50% 50%, rgba(248, 181, 0, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-text-heading);
+    line-height: 1.3;
+}
+
+p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* ============================================
+   3. 游戏容器与布局
+   ============================================ */
+.game {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ============================================
+   4. 场景背景 - 暖色调
+   ============================================ */
+.scene {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    transition: background 0.8s ease;
+}
+
+/* 书桌场景 - 温暖木纹暖色 */
+.scene--desk {
+    background: linear-gradient(135deg, #FFF8F0 0%, #FFE8D6 50%, #FFDAB3 100%);
+}
+
+/* 觉醒场景 - 温暖琥珀/金色渐变 */
+.scene--awakening {
+    background: linear-gradient(180deg, #FFE8D6 0%, #FFDAB3 30%, #FFCFA0 60%, #FFC389 100%);
+}
+
+/* 晨曦场景 */
+.scene--dawn {
+    background: linear-gradient(180deg, #FFE4C4 0%, #FFDAB3 40%, #FFBE76 100%);
+}
+
+/* 星空效果 - 温暖风格 */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    font-size: 12px;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 浮动装饰 */
+.float-decor {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: float 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+/* ============================================
+   5. 头部导航
+   ============================================ */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+}
+
+.header__title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-heading);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* 导航按钮 */
+.nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--color-bg-light);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+/* 进度指示 */
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--color-bg-light);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+}
+
+.progress-indicator__icon {
+    font-size: 1rem;
+}
+
+/* ============================================
+   6. 主要内容区域
+   ============================================ */
+.main {
+    padding-top: 80px;
+    padding-bottom: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   7. 卡片组件
+   ============================================ */
+.card {
+    background: var(--color-bg-card);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--color-primary);
+}
+
+.card--clickable {
+    cursor: pointer;
+}
+
+.card__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.card__icon {
+    font-size: 2rem;
+}
+
+.card__title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-heading);
+}
+
+.card__subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.card__body {
+    color: var(--color-text-light);
+    line-height: 1.8;
+}
+
+.card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px dashed var(--color-divider);
+}
+
+/* ============================================
+   8. 对话框
+   ============================================ */
+.dialog-box {
+    background: var(--color-bg-card);
+    border: 3px solid var(--color-primary);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    margin: 24px 0;
+    position: relative;
+    box-shadow: var(--shadow-card), var(--shadow-glow);
+    animation: fadeInUp 0.5s ease;
+}
+
+.dialog-box::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 24px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid var(--color-primary);
+}
+
+.dialog-speaker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent-peach));
+    color: white;
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius-full);
+    margin-bottom: 16px;
+}
+
+.dialog-content {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    color: var(--color-text);
+}
+
+.dialog-continue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    animation: pulse 2s infinite;
+}
+
+/* ============================================
+   9. 选项按钮
+   ============================================ */
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.choice-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: white;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+}
+
+.choice-btn:hover {
+    border-color: var(--color-primary);
+    background: linear-gradient(135deg, rgba(255, 159, 67, 0.1), rgba(255, 190, 118, 0.1));
+    transform: translateX(8px);
+    box-shadow: var(--shadow-glow);
+}
+
+.choice-btn:active {
+    transform: translateX(4px);
+}
+
+.choice-btn__letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--color-bg-light);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    color: var(--color-primary);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.choice-btn:hover .choice-btn__letter {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+}
+
+/* 选中状态 */
+.choice-btn.selected {
+    border-color: var(--color-primary);
+    background: rgba(255, 159, 67, 0.15);
+}
+
+.choice-btn.selected .choice-btn__letter {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* 正确状态 */
+.choice-btn.correct {
+    border-color: var(--color-success);
+    background: rgba(76, 175, 80, 0.15);
+    animation: correctPulse 0.5s ease;
+}
+
+.choice-btn.correct .choice-btn__letter {
+    background: var(--color-success);
+    color: white;
+}
+
+/* 错误状态 */
+.choice-btn.incorrect {
+    border-color: var(--color-danger);
+    background: rgba(231, 76, 60, 0.15);
+    animation: shake 0.5s ease;
+}
+
+.choice-btn.incorrect .choice-btn__letter {
+    background: var(--color-danger);
+    color: white;
+}
+
+@keyframes correctPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+    50% { box-shadow: 0 0 20px 10px rgba(76, 175, 80, 0); }
+}
+
+/* ============================================
+   10. 进度条
+   ============================================ */
+.progress {
+    margin: 16px 0;
+}
+
+.progress__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+}
+
+.progress__track {
+    width: 100%;
+    height: 12px;
+    background: var(--color-bg-light);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    border: 2px solid var(--color-border);
+}
+
+.progress__fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent-peach));
+    border-radius: var(--radius-full);
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.progress__fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ============================================
+   11. 徽章与标签
+   ============================================ */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+.badge--primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent-peach));
+    color: white;
+}
+
+.badge--success {
+    background: linear-gradient(135deg, var(--color-success), var(--color-success-light));
+    color: white;
+}
+
+.badge--warning {
+    background: linear-gradient(135deg, var(--color-warning), #FFD54F);
+    color: var(--color-text);
+}
+
+.badge--danger {
+    background: linear-gradient(135deg, var(--color-danger), #FF8A80);
+    color: white;
+}
+
+.badge--info {
+    background: linear-gradient(135deg, var(--color-info), #64B5F6);
+    color: white;
+}
+
+/* 知识点标签 */
+.knowledge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    background: rgba(255, 159, 67, 0.15);
+    border: 1px solid rgba(255, 159, 67, 0.4);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    color: var(--color-primary);
+}
+
+/* ============================================
+   12. 按钮
+   ============================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+}
+
+.btn--primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent-peach));
+    color: white;
+    box-shadow: var(--shadow-card);
+}
+
+.btn--primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn--secondary {
+    background: white;
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+
+.btn--secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn--success {
+    background: linear-gradient(135deg, var(--color-success), var(--color-success-light));
+    color: white;
+}
+
+.btn--sm {
+    padding: 8px 16px;
+    font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   13. 动画
+   ============================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.animate-bounceIn {
+    animation: bounceIn 0.6s ease forwards;
+}
+
+.animate-shake {
+    animation: shake 0.5s ease;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* ============================================
+   14. 加载动画
+   ============================================ */
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 16px;
+}
+
+.loader__spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--color-bg-light);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loader__text {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    animation: pulse 1.5s infinite;
+}
+
+/* ============================================
+   15. 响应式
+   ============================================ */
+@media (max-width: 768px) {
+    .header {
+        padding: 0 16px;
+    }
+    
+    .header__title span {
+        display: none;
+    }
+    
+    .card {
+        padding: 16px;
+        border-radius: var(--radius-lg);
+    }
+    
+    .dialog-box {
+        padding: 16px;
+    }
+    
+    .choice-btn {
+        padding: 12px 16px;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+}
+
+/* ============================================
+   16. 滚动条
+   ============================================ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-primary), var(--color-accent-peach));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--color-accent), var(--color-primary));
+}

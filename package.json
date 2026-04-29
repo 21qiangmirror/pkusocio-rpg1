@@ -1,0 +1,33 @@
+{
+  "name": "pku-sociology-rpg",
+  "version": "1.0.0",
+  "description": "北大社会学考研剧情RPG学习网站 - 游戏化学习北京大学社会学考研，100天闯关体系",
+  "main": "index.html",
+  "scripts": {
+    "dev": "echo 'Development server configured for GitHub Pages'",
+    "build": "echo 'Static site - no build required'",
+    "deploy": "npm run build && gh-pages -d .",
+    "test": "echo 'No tests configured'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/pku-sociology-rpg.git"
+  },
+  "keywords": [
+    "社会学",
+    "北京大学",
+    "考研",
+    "RPG",
+    "游戏化学习",
+    "教育"
+  ],
+  "author": "PKU-Sociology-RPG Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/pku-sociology-rpg/issues"
+  },
+  "homepage": "https://yourusername.github.io/pku-sociology-rpg",
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  }
+}
